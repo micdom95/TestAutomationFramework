@@ -31,6 +31,11 @@ namespace AutomationLogic.Handlers
         {
             driver.Manage().Cookies.DeleteAllCookies();
         }
+
+        public void DeleteCookieByName(string cookieName)
+        {
+            driver.Manage().Cookies.DeleteCookieNamed(cookieName);
+        }
     }
 
 }

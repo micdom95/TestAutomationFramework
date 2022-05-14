@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace AutomationLogic.Setup
 {
-    public static class DriverSetup
+    public class DriverSetup
     {
-        public static IWebDriver ReturnDriver(DriverType driverType)
+        public IWebDriver ReturnDriver(DriverType driverType)
         {
             IWebDriver _driver;
             switch (driverType)
