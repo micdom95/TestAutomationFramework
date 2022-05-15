@@ -51,7 +51,7 @@ namespace Automation_Logic.Handlers
                 driver.SwitchTo().Frame(i);
                 int totalCount = driver.FindElements(webElementLocation).Count();
                 Console.WriteLine(totalCount);
-                driver.SwitchTo().DefaultContent();
+                SwitchToDefaultContent();
             }
         }
     }
