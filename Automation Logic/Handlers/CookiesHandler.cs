@@ -22,9 +22,10 @@ namespace AutomationLogic.Handlers
             driver.Manage().Cookies.AddCookie(cookie);
         }
 
-        public void GetAllCookies()
+        public IList<Cookie> GetAllCookies()
         {
             var cookies = driver.Manage().Cookies.AllCookies;
+            return cookies;
         }
 
         public void DeleteAllCookies()
@@ -37,5 +38,4 @@ namespace AutomationLogic.Handlers
             driver.Manage().Cookies.DeleteCookieNamed(cookieName);
         }
     }
-
 }
