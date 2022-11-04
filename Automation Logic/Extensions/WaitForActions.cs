@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SwissHerbalTests.Common.Extensions
+namespace AutomationLogic.Common.Extensions
 {
     public static class WaitForActions
     {

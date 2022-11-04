@@ -25,6 +25,7 @@ namespace AutomationLogic.Setup
                         PageLoadStrategy = PageLoadStrategy.Normal
                     };
                     chromeOptions.AddArgument("--start-maximized");
+                    chromeOptions.AddArgument("--disable-notifications");
 
                     _driver = new ChromeDriver(chromeOptions);
                     break;

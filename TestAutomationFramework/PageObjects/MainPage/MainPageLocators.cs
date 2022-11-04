@@ -10,6 +10,7 @@ namespace TestSuite.PageObjects.MainPage
     public class MainPageLocators
     {
         private IWebDriver _driver;
+
         public MainPageLocators(IWebDriver driver)
         {
             _driver = driver;

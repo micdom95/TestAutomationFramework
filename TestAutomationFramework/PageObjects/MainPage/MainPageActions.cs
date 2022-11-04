@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using AutomationLogic.Common.Extensions;
+using FluentAssertions;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace TestSuite.PageObjects.MainPage
         public void NavigateToWSBMainPage()
         {
             _driver.Navigate().GoToUrl("https://wsb.edu.pl/");
+            WaitForActions.WaitForPageIsLoaded(_driver);
             _driver.Url.Should().Be("https://wsb.edu.pl/");
         }
     }
