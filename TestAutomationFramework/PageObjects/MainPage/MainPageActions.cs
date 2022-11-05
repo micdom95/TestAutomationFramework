@@ -51,7 +51,6 @@ namespace TestSuite.PageObjects.MainPage
         public void EnterTextToSearchEngine(string text)
         {
             SearchEngineTextbox.Displayed.Should().BeTrue();
-            //SearchEngineTextbox.Click();
             SearchEngineTextbox.SendKeys(text);
         }
 
@@ -60,7 +59,8 @@ namespace TestSuite.PageObjects.MainPage
             ClickSearchEngineButton();
             EnterTextToSearchEngine(textToSearch);
             ClickSearchEngineButton();
-            _driver.Url.Should().Be($"https://wsb.edu.pl/?gsearch={textToSearch}");
+            string formatedText = textToSearch.Replace(" ", "+");
+            _driver.Url.Should().Be($"https://wsb.edu.pl/?gsearch={formatedText}");
             SearchResultLabel.Text.Should().Be(textToSearch);
         }
     }
