@@ -31,6 +31,18 @@ namespace TestSuite.PageObjects.VirtualUniveristy
             _driver.Url.Should().Contain("https://sts.wsb.edu.pl/adfs/ls/?SAMLRequest=");
         }
 
+        public void EnterTextToUserNameTextbox(string userName)
+        {
+            UserNameTextbox.Displayed.Should().BeTrue();
+            UserNameTextbox.SendKeys(userName);
+        }
+
+        public void EnterTextToPasswordTextbox(string password)
+        {
+            PasswordTextbox.Displayed.Should().BeTrue();
+            PasswordTextbox.SendKeys(password);
+        }
+
         public void ClickLoginButton()
         {
             LoginButton.Displayed.Should().BeTrue();
