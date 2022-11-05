@@ -20,12 +20,15 @@ namespace TestSuite.TestsSuite
         [Category("SmokeTest")]
         public void WSBMainPage_OpeningWSBMainPage_WSBMainPageOpenedProperly()
         {
-            using (IWebDriver _driver = new ChromeDriver())
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.AddArgument("--disable-notifications");
+            using (IWebDriver _driver = new ChromeDriver(chromeOptions))
             {
                 var mainPageActions = new MainPageActions(_driver);
                 CommonElementsActions commonElementsActions = new CommonElementsActions(_driver);
                 mainPageActions.NavigateToWSBMainPage();
                 commonElementsActions.ClickAcceptCookieButton();
+                mainPageActions.SearchTextInSearchEngine("Testowa Fraza");
             }
         }
     }
