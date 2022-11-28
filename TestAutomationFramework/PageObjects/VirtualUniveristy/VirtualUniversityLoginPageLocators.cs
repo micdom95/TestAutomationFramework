@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace TestSuite.PageObjects.VirtualUniveristy
 {
-    public class VirtualUniversityPageLocators
+    public class VirtualUniversityLoginPageLocators
     {
         IWebDriver _driver;
 
-        public VirtualUniversityPageLocators(IWebDriver driver)
+        public VirtualUniversityLoginPageLocators(IWebDriver driver)
         {
             _driver = driver;
         }
 
-        public IWebElement UserNameTextbox => _driver.FindElement(By.Id("userNameInput"));
+        public IWebElement UsernameTextbox => _driver.FindElement(By.Id("userNameInput"));
 
         public IWebElement PasswordTextbox => _driver.FindElement(By.Name("Password"));
 
