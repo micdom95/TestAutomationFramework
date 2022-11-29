@@ -29,5 +29,15 @@ namespace TestSuite.PageObjects.MainPage
         public IWebElement SearchEngineTextbox => _driver.FindElement(By.XPath("//div[contains(@class,'header-container')]//input[contains(@data-name,'gsearch')]"));
 
         public IWebElement SearchResultLabel => _driver.FindElement(By.XPath("//div[@class='search-header clearfix']//span//b"));
+
+        public IWebElement UniversityLogo => _driver.FindElement(By.XPath("//div[@class='header-container']//div/div//a[@class='logo']//*[@id='logo']//*[text()='WSB University']"));
+
+        public IWebElement StudentButton => _driver.FindElement(By.XPath("//div[@class='header-container']//div[@class='main-menu']//li[@data-id='589']"));
+
+        public IWebElement AdmissionsButton => _driver.FindElement(By.XPath("//div[@class='header-container']//div[@class='main-menu']//li[@data-id='590']"));
+
+        public IWebElement ResearchButton => _driver.FindElement(By.XPath("//div[@class='header-container']//div[@class='main-menu']//li[@data-id='591']"));
+
+        public IWebElement UniversityButton => _driver.FindElement(By.XPath("//div[@class='header-container']//div[@class='main-menu']//li[@data-id='592']"));
     }
 }

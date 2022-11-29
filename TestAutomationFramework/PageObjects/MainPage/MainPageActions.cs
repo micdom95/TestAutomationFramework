@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TestSuite.Enums;
 using TestSuite.Translations;
+using TestSuite.Translations.Assertions;
 
 namespace TestSuite.PageObjects.MainPage
 {
@@ -68,6 +69,14 @@ namespace TestSuite.PageObjects.MainPage
             string mainPageUrl = _languages == Languages.Polish ? $"https://wsb.edu.pl/?gsearch={formatedText}" : $"https://wsb.edu.pl/en?gsearch={formatedText}";
             _driver.Url.Should().Be(mainPageUrl);
             SearchResultLabel.Text.Should().Be(textToSearch);
+        }
+
+        public void CheckMainPanelTranslations()
+        {
+            StudentButton.CheckIfTextCoitainsTranslation("Student", _mainPageTranslationsRepository);
+            AdmissionsButton.CheckIfTextCoitainsTranslation("Admissions", _mainPageTranslationsRepository);
+            ResearchButton.CheckIfTextCoitainsTranslation("Research", _mainPageTranslationsRepository);
+            UniversityButton.CheckIfTextCoitainsTranslation("University", _mainPageTranslationsRepository);
         }
     }
 }
