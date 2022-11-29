@@ -27,6 +27,8 @@ namespace TestSuite.TestsSuite
                 virtualUniversityLoginPageActions.EnterTextToPasswordTextbox("");
                 virtualUniversityLoginPageActions.ClickLoginButton();
                 virtualUniversityLoginPageActions.CheckEmptyLoginErrorMessage();
+
+                _driver.Close();
             }
         }
 

@@ -6,16 +6,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestSuite.Enums;
+using TestSuite.Translations;
 
 namespace TestSuite.PageObjects.MainPage
 {
     public class MainPageActions : MainPageLocators
     {
-        IWebDriver _driver;
+        private IWebDriver _driver;
+        private Languages _languages;
+        private readonly MainPageTranslations _mainPageTranslationsRepository = new MainPageTranslations();
 
-        public MainPageActions(IWebDriver driver) : base(driver)
+        public MainPageActions(IWebDriver driver, Languages language) : base(driver)
         {
             _driver = driver;
+            _languages = language;
         }
 
         public Dictionary<string, string> languageDropdownDictionaryData = new Dictionary<string, string>()
@@ -60,7 +65,8 @@ namespace TestSuite.PageObjects.MainPage
             EnterTextToSearchEngine(textToSearch);
             ClickSearchEngineButton();
             string formatedText = textToSearch.Replace(" ", "+");
-            _driver.Url.Should().Be($"https://wsb.edu.pl/?gsearch={formatedText}");
+            string mainPageUrl = _languages == Languages.Polish ? $"https://wsb.edu.pl/?gsearch={formatedText}" : $"https://wsb.edu.pl/en?gsearch={formatedText}";
+            _driver.Url.Should().Be(mainPageUrl);
             SearchResultLabel.Text.Should().Be(textToSearch);
         }
     }
