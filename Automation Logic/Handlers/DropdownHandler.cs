@@ -10,13 +10,13 @@ namespace AutomationLogic.Handlers
 {
     public class DropdownHandler
     {
-        public IWebDriver driver { get; set; }
-        public SelectElement select { get; set; }
+        private IWebDriver driver { get; set; }
+        private SelectElement select { get; set; }
 
-        public DropdownHandler(IWebDriver driver, SelectElement select)
+        public DropdownHandler(IWebDriver driver, IWebElement webElement)
         {
             this.driver = driver;
-            this.select = select;
+            select = new SelectElement(webElement);
         }
 
         public void SelectElementByIndex(int index)
@@ -42,7 +42,6 @@ namespace AutomationLogic.Handlers
         public void DeselectElementByIndex(int index)
         {
             select.DeselectByIndex(index);
-            
         }
 
         public void DeselectElementByValue(string value)

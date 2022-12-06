@@ -18,20 +18,35 @@ namespace TestSuite.TestsSuite
     public class MainPageTests
     {
         [Test]
-        [Category("Main Panel Translation Test with Polish language")]
+        [Category("Smoke Test")]
         public void WSBMainPage_OpeningWSBMainPage_WSBMainPageOpenedProperly()
         {
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.AddArgument("--disable-notifications");
-            Languages languages = Languages.Polish;
             var driverSetup = new DriverSetup();
+            
             using (IWebDriver _driver = driverSetup.ReturnDriver(DriverType.Chrome))
             {
-                var mainPageActions = new MainPageActions(_driver, languages);
+                var mainPageActions = new MainPageActions(_driver);
                 var commonElementsActions = new CommonElementsActions(_driver);
                 mainPageActions.NavigateToWSBMainPage();
                 commonElementsActions.ClickAcceptCookieButton();
-                mainPageActions.CheckMainPanelTranslations();
+                mainPageActions.CheckMainPanelTranslations(Languages.Polish);
+            }
+        }
+
+        public void WSBMainpage_SearchEngineTest_SearchEngineFindsProperPhrase()
+        {
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.AddArgument("--disable-notifications");
+            var driverSetup = new DriverSetup();
+            using (IWebDriver _driver = driverSetup.ReturnDriver(DriverType.Chrome))
+            {
+                var mainPageActions = new MainPageActions(_driver);
+                var commonElementsActions = new CommonElementsActions(_driver);
+                mainPageActions.NavigateToWSBMainPage();
+                commonElementsActions.ClickAcceptCookieButton();
+                mainPageActions.SearchTextInSearchEngine();
             }
         }
     }

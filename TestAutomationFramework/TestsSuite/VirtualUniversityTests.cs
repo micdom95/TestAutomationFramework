@@ -52,7 +52,7 @@ namespace TestSuite.TestsSuite
         {
             using (IWebDriver _driver = new ChromeDriver())
             {
-                
+
                 var virtualUniversityLoginPageActions = new VirtualUniversityLoginPageActions(_driver);
                 var commonElementsActions = new CommonElementsActions(_driver);
                 virtualUniversityLoginPageActions.NavigateToVirtualUniversityPage();
@@ -76,10 +76,31 @@ namespace TestSuite.TestsSuite
                 virtualUniversityLoginPageActions.EnterTextToUsernameTextbox(SecretsConfiguration.Instance.UserNameLoginEmail);
                 virtualUniversityLoginPageActions.EnterTextToPasswordTextbox(SecretsConfiguration.Instance.UserLoginPassword);
                 virtualUniversityLoginPageActions.ClickLoginButton();
-                virtualUniversityLoginPageActions.CheckWrongLoginErrorMessage();
                 virtualUniversityUserPageActions.CheckDefaultUrlAddressAfterLogIn();
                 virtualUniversityUserPageActions.CheckUserInfoLabel(SecretsConfiguration.Instance.UsernameInfo);
                 virtualUniversityUserPageActions.CheckUserAlbumNumberUserInfoLabel(SecretsConfiguration.Instance.UserAlbumNumber);
+            }
+        }
+
+        [Test]
+        [Category("Translations - User Page - Polish Language")]
+        [Description("This Test will start from Logging Page because we can't do HTTP Request with authorization")]
+        public void VirtualUniversityUserPageTranslation_PolishTranslations_CorrectTranslation()
+        {
+            using (IWebDriver _driver = new ChromeDriver())
+            {
+                var virtualUniversityLoginPageActions = new VirtualUniversityLoginPageActions(_driver);
+                var commonElementsActions = new CommonElementsActions(_driver);
+                var virtualUniversityUserPageActions = new VirtualUniversityUserPageActions(_driver);
+
+                virtualUniversityLoginPageActions.NavigateToVirtualUniversityPage();
+                virtualUniversityLoginPageActions.EnterTextToUsernameTextbox(SecretsConfiguration.Instance.UserNameLoginEmail);
+                virtualUniversityLoginPageActions.EnterTextToPasswordTextbox(SecretsConfiguration.Instance.UserLoginPassword);
+                virtualUniversityLoginPageActions.ClickLoginButton();
+                virtualUniversityUserPageActions.CheckDefaultUrlAddressAfterLogIn();
+                virtualUniversityUserPageActions.CheckUserInfoLabel(SecretsConfiguration.Instance.UsernameInfo);
+                virtualUniversityUserPageActions.CheckUserAlbumNumberUserInfoLabel(SecretsConfiguration.Instance.UserAlbumNumber);
+                virtualUniversityUserPageActions.CheckAnnouncementsPageTranslations();
             }
         }
     }

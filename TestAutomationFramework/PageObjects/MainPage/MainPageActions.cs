@@ -1,6 +1,8 @@
 ﻿using AutomationLogic.Common.Extensions;
+using AutomationLogic.Handlers;
 using FluentAssertions;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,13 +17,11 @@ namespace TestSuite.PageObjects.MainPage
     public class MainPageActions : MainPageLocators
     {
         private IWebDriver _driver;
-        private Languages _languages;
         private readonly MainPageTranslations _mainPageTranslationsRepository = new MainPageTranslations();
 
-        public MainPageActions(IWebDriver driver, Languages language) : base(driver)
+        public MainPageActions(IWebDriver driver) : base(driver)
         {
             _driver = driver;
-            _languages = language;
         }
 
         public Dictionary<string, string> languageDropdownDictionaryData = new Dictionary<string, string>()
@@ -48,6 +48,12 @@ namespace TestSuite.PageObjects.MainPage
             _driver.Url.Should().Be(wsbMainPageUrl);
         }
 
+        public void SelectCityFromDropdown()
+        {
+            DropdownHandler dropdownHandler = new DropdownHandler(_driver, LanguageOptionsDropdown);
+            dropdownHandler.SelectElementByIndex(1);
+        }
+
         public void ClickSearchEngineButton()
         {
             SearchEngineButton.Displayed.Should().BeTrue();
@@ -60,23 +66,23 @@ namespace TestSuite.PageObjects.MainPage
             SearchEngineTextbox.SendKeys(text);
         }
 
-        public void SearchTextInSearchEngine(string textToSearch)
+        public void SearchTextInSearchEngine(string textToSearch, Languages languages)
         {
             ClickSearchEngineButton();
             EnterTextToSearchEngine(textToSearch);
             ClickSearchEngineButton();
             string formatedText = textToSearch.Replace(" ", "+");
-            string mainPageUrl = _languages == Languages.Polish ? $"https://wsb.edu.pl/?gsearch={formatedText}" : $"https://wsb.edu.pl/en?gsearch={formatedText}";
+            string mainPageUrl = languages == Languages.Polish ? $"https://wsb.edu.pl/?gsearch={formatedText}" : $"https://wsb.edu.pl/en?gsearch={formatedText}";
             _driver.Url.Should().Be(mainPageUrl);
             SearchResultLabel.Text.Should().Be(textToSearch);
         }
 
-        public void CheckMainPanelTranslations()
+        public void CheckMainPanelTranslations(Languages language)
         {
-            StudentButton.CheckIfTextCoitainsTranslation("Student", _mainPageTranslationsRepository);
-            AdmissionsButton.CheckIfTextCoitainsTranslation("Admissions", _mainPageTranslationsRepository);
-            ResearchButton.CheckIfTextCoitainsTranslation("Research", _mainPageTranslationsRepository);
-            UniversityButton.CheckIfTextCoitainsTranslation("University", _mainPageTranslationsRepository);
+            StudentButton.CheckIfTextCoitainsTranslation("Student", _mainPageTranslationsRepository, language);
+            AdmissionsButton.CheckIfTextCoitainsTranslation("Admissions", _mainPageTranslationsRepository, language);
+            ResearchButton.CheckIfTextCoitainsTranslation("Research", _mainPageTranslationsRepository, language);
+            UniversityButton.CheckIfTextCoitainsTranslation("University", _mainPageTranslationsRepository, language);
         }
     }
 }
