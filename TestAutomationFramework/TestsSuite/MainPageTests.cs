@@ -35,7 +35,11 @@ namespace TestSuite.TestsSuite
             }
         }
 
-        public void WSBMainpage_SearchEngineTest_SearchEngineFindsProperPhrase()
+        [Test]
+        [TestCase("TestPhrase")]
+        [Category("Search Engine")]
+        [Description("Search Engine Test - Checking typed phrase")]
+        public void WSBMainpage_SearchEngineTest_SearchEngineFindsProperPhrase(string searchText)
         {
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.AddArgument("--disable-notifications");
@@ -46,7 +50,8 @@ namespace TestSuite.TestsSuite
                 var commonElementsActions = new CommonElementsActions(_driver);
                 mainPageActions.NavigateToWSBMainPage();
                 commonElementsActions.ClickAcceptCookieButton();
-                mainPageActions.SearchTextInSearchEngine();
+                mainPageActions.SearchTextInSearchEngine(searchText, Languages.Polish);
+                mainPageActions.CheckSearchResultLabel(searchText);
             }
         }
     }

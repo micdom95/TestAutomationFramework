@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestSuite.Enums;
 using TestSuite.PageObjects.CommonElements;
 using TestSuite.PageObjects.VirtualUniveristy;
 
@@ -16,6 +17,7 @@ namespace TestSuite.TestsSuite
     public class VirtualUniversityTests
     {
         [Test]
+        [Category("Login Page")]
         public void VirtualUniversityLogin_LoginWithEmptyUserNameAndEmptyPassword_DisplayedErrorMessage()
         {
             using (IWebDriver _driver = new ChromeDriver())
@@ -33,6 +35,7 @@ namespace TestSuite.TestsSuite
         }
 
         [Test]
+        [Category("Login Page")]
         public void VirtualUniversityLogin_LoginWithUserNameAndEmptyPassword_DisplayedErrorMessage()
         {
             using (IWebDriver _driver = new ChromeDriver())
@@ -48,6 +51,7 @@ namespace TestSuite.TestsSuite
         }
 
         [Test]
+        [Category("Login Page")]
         public void VirtualUniversityLogin_LoginWithIncorrectUserNameAndIncorrectPassword_DisplayedErrorMessage()
         {
             using (IWebDriver _driver = new ChromeDriver())
@@ -64,6 +68,7 @@ namespace TestSuite.TestsSuite
         }
 
         [Test]
+        [Category("Login Page")]
         public void VirtualUniversityLogin_LoginWithCorrectCredentials_CorrectLogging()
         {
             using (IWebDriver _driver = new ChromeDriver())
@@ -100,7 +105,7 @@ namespace TestSuite.TestsSuite
                 virtualUniversityUserPageActions.CheckDefaultUrlAddressAfterLogIn();
                 virtualUniversityUserPageActions.CheckUserInfoLabel(SecretsConfiguration.Instance.UsernameInfo);
                 virtualUniversityUserPageActions.CheckUserAlbumNumberUserInfoLabel(SecretsConfiguration.Instance.UserAlbumNumber);
-                virtualUniversityUserPageActions.CheckAnnouncementsPageTranslations();
+                virtualUniversityUserPageActions.CheckAnnouncementsPageTranslations(Languages.Polish);
             }
         }
     }

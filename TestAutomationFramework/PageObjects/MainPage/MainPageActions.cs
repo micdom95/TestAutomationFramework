@@ -74,7 +74,11 @@ namespace TestSuite.PageObjects.MainPage
             string formatedText = textToSearch.Replace(" ", "+");
             string mainPageUrl = languages == Languages.Polish ? $"https://wsb.edu.pl/?gsearch={formatedText}" : $"https://wsb.edu.pl/en?gsearch={formatedText}";
             _driver.Url.Should().Be(mainPageUrl);
-            SearchResultLabel.Text.Should().Be(textToSearch);
+        }
+
+        public void CheckSearchResultLabel(string expectedSearchResult)
+        {
+            SearchResultLabel.Text.Should().Be(expectedSearchResult);
         }
 
         public void CheckMainPanelTranslations(Languages language)
