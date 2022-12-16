@@ -6,9 +6,15 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestSuite", "TestAutomationFramework\TestSuite.csproj", "{90ECEC02-CD4E-47A3-9206-63043C2C2D9F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F638D911-4E44-4D03-A5D6-9C5B25C9D1D9} = {F638D911-4E44-4D03-A5D6-9C5B25C9D1D9}
+		{28839833-1BDC-441B-A987-DE1232F0F1F6} = {28839833-1BDC-441B-A987-DE1232F0F1F6}
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationLogic", "Automation Logic\AutomationLogic.csproj", "{F638D911-4E44-4D03-A5D6-9C5B25C9D1D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PageObjects", "PageObjects\PageObjects.csproj", "{28839833-1BDC-441B-A987-DE1232F0F1F6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F638D911-4E44-4D03-A5D6-9C5B25C9D1D9} = {F638D911-4E44-4D03-A5D6-9C5B25C9D1D9}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +30,10 @@ Global
 		{F638D911-4E44-4D03-A5D6-9C5B25C9D1D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F638D911-4E44-4D03-A5D6-9C5B25C9D1D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F638D911-4E44-4D03-A5D6-9C5B25C9D1D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28839833-1BDC-441B-A987-DE1232F0F1F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28839833-1BDC-441B-A987-DE1232F0F1F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28839833-1BDC-441B-A987-DE1232F0F1F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28839833-1BDC-441B-A987-DE1232F0F1F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

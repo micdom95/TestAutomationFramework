@@ -44,13 +44,12 @@ namespace Automation_Logic.Handlers
 
         public void FindFrameForWebElement(By webElementLocation)
         {
-            int framesCount = driver.FindElements(By.TagName("ifame")).Count();
+            int framesCount = driver.FindElements(By.TagName("iframe")).Count();
 
             for (int i = 0; i < framesCount; i++)
             {
                 driver.SwitchTo().Frame(i);
                 int totalCount = driver.FindElements(webElementLocation).Count();
-                Console.WriteLine(totalCount);
                 SwitchToDefaultContent();
             }
         }

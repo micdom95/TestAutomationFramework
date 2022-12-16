@@ -39,5 +39,17 @@ namespace TestSuite.PageObjects.MainPage
         public IWebElement ResearchButton => _driver.FindElement(By.XPath("//div[@class='header-container']//div[@class='main-menu']//li[@data-id='591']"));
 
         public IWebElement UniversityButton => _driver.FindElement(By.XPath("//div[@class='header-container']//div[@class='main-menu']//li[@data-id='592']"));
+
+        #region ChatBot
+
+        public IWebElement ChatBotLauncherButtonFrame => _driver.FindElement(By.XPath("//iframe[@id='usercom-launcher-dot-frame']"));
+
+        public IWebElement ChatBotLauncherButton => _driver.FindElement(By.XPath("//div[@class='usercom-launcher-dot']"));
+
+        public IWebElement ChatBotUserBoardFrame => _driver.FindElement(By.XPath("//iframe[@id='usercom-board-frame']"));
+
+        public IWebElement ChatBotGlobalContainer => _driver.FindElement(By.XPath("//div[@class='usercom-current-view']"));
+
+        #endregion
     }
 }

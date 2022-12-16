@@ -47,7 +47,7 @@ namespace TestSuite.PageObjects.MainPage
             WaitForActions.WaitForPageIsLoaded(_driver);
             _driver.Url.Should().Be(wsbMainPageUrl);
         }
-
+        #region MainPanel
         public void SelectCityFromDropdown()
         {
             DropdownHandler dropdownHandler = new DropdownHandler(_driver, LanguageOptionsDropdown);
@@ -88,5 +88,16 @@ namespace TestSuite.PageObjects.MainPage
             ResearchButton.CheckIfTextCoitainsTranslation("Research", _mainPageTranslationsRepository, language);
             UniversityButton.CheckIfTextCoitainsTranslation("University", _mainPageTranslationsRepository, language);
         }
+        #endregion
+
+        #region ChatBot
+
+        public void ClickChatBotLauncherButton()
+        {
+            ChatBotLauncherButton.Displayed.Should().BeTrue();
+            ChatBotLauncherButton.Click();
+        }
+
+        #endregion
     }
 }
