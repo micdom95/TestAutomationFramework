@@ -85,7 +85,6 @@ namespace TestSuite.TestsSuite
                 //Thread.Sleep(50000); //TODO: Custom Waiter for ChatBot.
                 //mainPageActions.ClickChatBotLauncherButton(); //TODO: Check if button is clicked.
                 
-                frameHandler.FindFrameForWebElement(By.XPath("//div[@class='usercom-launcher-dot']")); //TODO: 7 IFrame found. After finding WebElement in Frame, method failing(WebElement in Frame Index 2, fail in index 3).
                 WaitForActions.WaitUntilElementVisible(_driver, By.XPath("//div[@class='usercom-launcher-dot']"), 60);
             }
         }

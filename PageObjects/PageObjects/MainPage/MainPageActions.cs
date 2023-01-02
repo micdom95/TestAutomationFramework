@@ -24,14 +24,14 @@ namespace TestSuite.PageObjects.MainPage
             _driver = driver;
         }
 
-        public Dictionary<string, string> languageDropdownDictionaryData = new Dictionary<string, string>()
+        public Dictionary<string, string> LanguageDropdownDictionaryData = new Dictionary<string, string>()
         {
             ["PL"] = "https://wsb.edu.pl/",
             ["EN"] = "https://wsb.edu.pl/en",
             ["RU"] = "https://wsb.edu.pl/ru"
         };
 
-        public Dictionary<string, string> departmentDropdownDictionaryData = new Dictionary<string, string>()
+        public Dictionary<string, string> DepartmentDropdownDictionaryData = new Dictionary<string, string>()
         {
             ["Dąbrowa Górnicza"] = "https://wsb.edu.pl/",
             ["Cieszyn"] = "https://wsb.edu.pl/cieszyn",
