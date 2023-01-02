@@ -30,6 +30,8 @@ namespace PageObjects.Functionalities
 
         private IWebElement ChatBotReceivedAnswerMessage => _driver.FindElement(By.XPath("//div[contains(@class,'lastMessageInGroup')]//p[contains(text(),'Dziękujemy')]"));
 
+        private IWebElement ChatBotTextArea => _driver.FindElement(By.XPath("//textarea[@class='usercom-compose-textarea']"));
+
         private Dictionary<string, string> ChatBotMessages = new Dictionary<string, string>()
         {
             ["WelcomeMessage"] = "Cześć, tu automatyczny chatbot Akademii WSB. Jestem tu po to, by pomóc Ci znaleźć istotne informacje. Dasz mi szansę?",
@@ -51,6 +53,12 @@ namespace PageObjects.Functionalities
         {
             ChatBotButton.Displayed.Should().BeTrue();
             ChatBotButton.Click();
+        }
+
+        public void EnterTextToTextArea(string message)
+        {
+            ChatBotTextArea.Displayed.Should().BeTrue();
+            ChatBotTextArea.SendKeys(message);
         }
 
         public void CheckChatBotHeadline()
