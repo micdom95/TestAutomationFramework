@@ -26,11 +26,11 @@ namespace PageObjects.Functionalities
 
         private IWebElement ChatBotWelcomeMessage => _driver.FindElement(By.XPath("//div[@class='message-wrapper usercom-avatar-in-message']//p[contains(text(),'Cześć')]"));
 
-        private IWebElement ChatBotNotReceivedAnswerMessage => _driver.FindElement(By.XPath("//div[contains(@class,'lastMessageInGroup')]//p[contains(text(),'Dziękujemy')]"));
+        private IWebElement ChatBotNotReceivedAnswerMessage => _driver.FindElement(By.XPath("//div[contains(@class,'lastMessageInGroup')]//p[contains(text(),'Nie otrzymałem')]"));
 
-        private IWebElement ChatBotReceivedAnswerMessage => _driver.FindElement(By.XPath(""));
+        private IWebElement ChatBotReceivedAnswerMessage => _driver.FindElement(By.XPath("//div[contains(@class,'lastMessageInGroup')]//p[contains(text(),'Dziękujemy')]"));
 
-        private Dictionary<string, string> ChatBogMessages = new Dictionary<string, string>()
+        private Dictionary<string, string> ChatBotMessages = new Dictionary<string, string>()
         {
             ["WelcomeMessage"] = "Cześć, tu automatyczny chatbot Akademii WSB. Jestem tu po to, by pomóc Ci znaleźć istotne informacje. Dasz mi szansę?",
             ["NotReveivedAnswerMessage"] = "Nie otrzymałem od Ciebie jednoznacznej odpowiedzi, więc przyjmuję, że nie jesteś w tej chwili zainteresowany/a rozmową ze mną. Jeśli jednak chcesz, by konsultant Akademii WSB skontaktował się z Tobą, zostaw nam swój adres e-mail",
@@ -60,12 +60,17 @@ namespace PageObjects.Functionalities
 
         public void CheckWelcomeMessage()
         {
-            ChatBotWelcomeMessage.Text.Should().Be(ChatBogMessages["WelcomeMessage"]);
+            ChatBotWelcomeMessage.Text.Should().Be(ChatBotMessages["WelcomeMessage"]);
         }
 
         public void CheckNotReceivedAnswerMessage()
         {
-            ChatBotNotReceivedAnswerMessage.Text.Should().Be(ChatBogMessages["NotReveivedAnswerMessage"]);
+            ChatBotNotReceivedAnswerMessage.Text.Should().Be(ChatBotMessages["NotReveivedAnswerMessage"]);
+        }
+
+        public void CheckReveivedAnswerMessage()
+        {
+            ChatBotReceivedAnswerMessage.Text.Should().Be(ChatBotMessages["ReceivedAnswerMessage"]);
         }
     }
 }
