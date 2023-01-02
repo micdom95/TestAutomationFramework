@@ -89,15 +89,5 @@ namespace TestSuite.PageObjects.MainPage
             UniversityButton.CheckIfTextCoitainsTranslation("University", _mainPageTranslationsRepository, language);
         }
         #endregion
-
-        #region ChatBot
-
-        public void ClickChatBotLauncherButton()
-        {
-            ChatBotLauncherButton.Displayed.Should().BeTrue();
-            ChatBotLauncherButton.Click();
-        }
-
-        #endregion
     }
 }

@@ -23,6 +23,7 @@ namespace TestSuite.TestsSuite
     {
         [Test]
         [Category("Smoke Test")]
+        [Parallelizable]
         public void WSBMainPage_OpeningWSBMainPage_WSBMainPageOpenedProperly()
         {
             ChromeOptions chromeOptions = new ChromeOptions();
@@ -43,6 +44,7 @@ namespace TestSuite.TestsSuite
         [TestCase("TestPhrase")]
         [Category("Search Engine")]
         [Description("Search Engine Test - Checking typed phrase")]
+        [Parallelizable]
         public void WSBMainPage_SearchEngineTest_SearchEngineFindsProperPhrase(string searchText)
         {
             ChromeOptions chromeOptions = new ChromeOptions();
@@ -62,6 +64,7 @@ namespace TestSuite.TestsSuite
         [Test]
         [Category("ChatBot")]
         [Description("ChatBot - Check IFrame for ChatBot")]
+        [Parallelizable]
         public void WSBMainPage_ChatBot_CheckChatBotIFrame()
         {
             ChromeOptions chromeOptions = new ChromeOptions();
@@ -72,7 +75,6 @@ namespace TestSuite.TestsSuite
             {
                 var mainPageActions = new MainPageActions(_driver);
                 var commonElementsActions = new CommonElementsActions(_driver);
-                var frameHandler = new FrameHandler(_driver);
                 var cookiesHanlder = new CookiesHandler(_driver);
 
 
@@ -80,12 +82,11 @@ namespace TestSuite.TestsSuite
                 commonElementsActions.ClickAcceptCookieButton();
                 cookiesHanlder.DeleteAllCookies();
                 _driver.Navigate().Refresh();
-                Thread.Sleep(50000); //TODO: Custom Waiter for ChatBot.
+                //Thread.Sleep(50000); //TODO: Custom Waiter for ChatBot.
                 //mainPageActions.ClickChatBotLauncherButton(); //TODO: Check if button is clicked.
                 
                 frameHandler.FindFrameForWebElement(By.XPath("//div[@class='usercom-launcher-dot']")); //TODO: 7 IFrame found. After finding WebElement in Frame, method failing(WebElement in Frame Index 2, fail in index 3).
                 WaitForActions.WaitUntilElementVisible(_driver, By.XPath("//div[@class='usercom-launcher-dot']"), 60);
-
             }
         }
     }

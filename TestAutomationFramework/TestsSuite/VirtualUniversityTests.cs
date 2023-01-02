@@ -18,6 +18,7 @@ namespace TestSuite.TestsSuite
     {
         [Test]
         [Category("Login Page")]
+        [Parallelizable]
         public void VirtualUniversityLogin_LoginWithEmptyUserNameAndEmptyPassword_DisplayedErrorMessage()
         {
             using (IWebDriver _driver = new ChromeDriver())
@@ -36,6 +37,7 @@ namespace TestSuite.TestsSuite
 
         [Test]
         [Category("Login Page")]
+        [Parallelizable]
         public void VirtualUniversityLogin_LoginWithUserNameAndEmptyPassword_DisplayedErrorMessage()
         {
             using (IWebDriver _driver = new ChromeDriver())
@@ -52,6 +54,7 @@ namespace TestSuite.TestsSuite
 
         [Test]
         [Category("Login Page")]
+        [Parallelizable]
         public void VirtualUniversityLogin_LoginWithIncorrectUserNameAndIncorrectPassword_DisplayedErrorMessage()
         {
             using (IWebDriver _driver = new ChromeDriver())
