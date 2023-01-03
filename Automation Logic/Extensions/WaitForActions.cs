@@ -60,6 +60,20 @@ namespace AutomationLogic.Common.Extensions
             }
         }
 
+        public static IWebDriver WaitUntilFrameIsAvailable(this IWebDriver driver, string frameLocator, int timeout = 10)
+        {
+            try
+            {
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeout));
+                return wait.Until(ExpectedConditions.FrameToBeAvailableAndSwitchToIt(frameLocator));
+            }
+            catch (NoSuchElementException)
+            {
+                Console.WriteLine("Frame with locator: '" + frameLocator + "' was not found in current context page.");
+                throw;
+            }
+        }
+
         public static IAlert WaitUntilAlertIsDisplayed(this IWebDriver driver, int timeout = 10)
         {
             try

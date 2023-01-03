@@ -1,4 +1,5 @@
 ﻿using Automation_Logic.Handlers;
+using AutomationLogic.Common.Extensions;
 using FluentAssertions;
 using OpenQA.Selenium;
 using System;
@@ -14,17 +15,21 @@ namespace PageObjects.Functionalities
         private IWebDriver _driver;
         private FrameHandler _frameHandler;
 
-        public ChatBot(IWebDriver driver, FrameHandler frameHandler)
+        public ChatBot(IWebDriver driver)
         {
             _driver = driver;
-            _frameHandler = frameHandler;
+            _frameHandler = new FrameHandler(driver);
         }
 
         private IWebElement ChatBotButton => _driver.FindElement(By.XPath("//div[@class='usercom-launcher-dot']"));
 
         private IWebElement ChatBotHeadline => _driver.FindElement(By.XPath("//div[@data-view='chatMessages']//div[@class='usercom-heading usercom-heading-messages usercom-heading-messages--middle usercom-heading-messages--small']//div[@class='usercom-messages-h1']"));
 
-        private IWebElement ChatBotWelcomeMessage => _driver.FindElement(By.XPath("//div[@class='message-wrapper usercom-avatar-in-message']//p[contains(text(),'Cześć')]"));
+        private IWebElement ChatBotWelcomeMessage => _driver.FindElement(By.XPath("//div[@class='usercom-message-content-wrapper']//p[contains(text(),'Cześć')]"));
+
+        private IWebElement ChatBotYesButton => _driver.FindElement(By.XPath("//div[@class='usercom-bot-answer-item']//p[contains(@text,'Tak')]"));
+
+        private IWebElement ChatBotNoButton => _driver.FindElement(By.XPath(""));
 
         private IWebElement ChatBotNotReceivedAnswerMessage => _driver.FindElement(By.XPath("//div[contains(@class,'lastMessageInGroup')]//p[contains(text(),'Nie otrzymałem')]"));
 
@@ -41,18 +46,31 @@ namespace PageObjects.Functionalities
 
         public void SwitchToChatBotButtonFrame()
         {
-            _frameHandler.SwitchToFrameByID("usercom-launcher-dot-frame");
+            WaitForActions.WaitUntilFrameIsAvailable(_driver, "usercom-launcher-dot-frame", 90);
         }
 
         public void SwitchToChatBotFrame()
         {
-            _frameHandler.SwitchToFrameByID("usercom-board-frame");
+            _frameHandler.SwitchToDefaultContent();
+            WaitForActions.WaitUntilFrameIsAvailable(_driver, "usercom-board-frame");
         }
 
         public void ClickChatBotButton()
         {
             ChatBotButton.Displayed.Should().BeTrue();
             ChatBotButton.Click();
+        }
+
+        public void ClickChatBotYesButton()
+        {
+            ChatBotYesButton.Displayed.Should().BeTrue();
+            ChatBotYesButton.Click();
+        }
+
+        public void ClickChatBotNoButton()
+        {
+            ChatBotNoButton.Displayed.Should().BeTrue();
+            ChatBotNoButton.Click();
         }
 
         public void EnterTextToTextArea(string message)
@@ -68,12 +86,14 @@ namespace PageObjects.Functionalities
 
         public void CheckWelcomeMessage()
         {
+            WaitForActions.WaitUntilElementVisible(_driver, By.XPath("//div[@class='usercom-message-content-wrapper']//p[contains(text(),'Cześć')]"));
             ChatBotWelcomeMessage.Text.Should().Be(ChatBotMessages["WelcomeMessage"]);
         }
 
         public void CheckNotReceivedAnswerMessage()
         {
-            ChatBotNotReceivedAnswerMessage.Text.Should().Be(ChatBotMessages["NotReveivedAnswerMessage"]);
+            WaitForActions.WaitUntilElementVisible(_driver, By.XPath("//div[contains(@class,'lastMessageInGroup')]//p[contains(text(),'Nie otrzymałem')]"), 120);
+           ChatBotNotReceivedAnswerMessage.Text.Should().Be(ChatBotMessages["NotReveivedAnswerMessage"]);
         }
 
         public void CheckReveivedAnswerMessage()

@@ -47,6 +47,7 @@ namespace TestSuite.PageObjects.MainPage
             WaitForActions.WaitForPageIsLoaded(_driver);
             _driver.Url.Should().Be(wsbMainPageUrl);
         }
+        
         #region MainPanel
         public void SelectCityFromDropdown()
         {
