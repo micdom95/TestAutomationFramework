@@ -122,7 +122,7 @@ namespace TestSuite.TestsSuite
 
         [Test]
         [Category("ChatBot")]
-        [Description("ChatBot - Check ChatBot without received answer from user")]
+        [Description("ChatBot - Check ChatBot without received answer from user and sended E-mail in correct format")]
         [Parallelizable]
         public void WSBMainPage_ChatBot_CheckChatBotWithNoReceivedUserAnswerAndSendedCorrectEmailFormat()
         {
@@ -148,6 +148,70 @@ namespace TestSuite.TestsSuite
                 chatBot.CheckNotReceivedUserAnswerMessage();
                 chatBot.SendMessage("test@test.com");
                 chatBot.CheckReceivedEmailMessage();
+            }
+        }
+
+        [Test]
+        [Category("ChatBot")]
+        [Description("ChatBot - Check ChatBot without received answer from user and sended E-mail in incorrect format")]
+        [Parallelizable]
+        public void WSBMainPage_ChatBot_CheckChatBotWithNoReceivedUserAnswerAndSendedIncorrectEmailFormat()
+        {
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.AddArgument("--disable-notifications");
+
+            var driverSetup = new DriverSetup();
+            using (IWebDriver _driver = driverSetup.ReturnDriver(DriverType.Chrome))
+            {
+                var mainPageActions = new MainPageActions(_driver);
+                var commonElementsActions = new CommonElementsActions(_driver);
+                var cookiesHanlder = new CookiesHandler(_driver);
+                var chatBot = new ChatBot(_driver);
+
+                mainPageActions.NavigateToWSBMainPage();
+                commonElementsActions.ClickAcceptCookieButton();
+                cookiesHanlder.DeleteAllCookies();
+                _driver.Navigate().Refresh();
+                chatBot.SwitchToChatBotButtonFrame();
+                chatBot.ClickChatBotButton();
+                chatBot.SwitchToChatBotFrame();
+                chatBot.CheckWelcomeMessage();
+                chatBot.CheckNotReceivedUserAnswerMessage();
+                chatBot.SendMessage("IncorrectEmailFormat");
+                //TODO: Check label about incorrect Email
+            }
+        }
+
+        [Test]
+        [Category("ChatBot")]
+        [Description(@"ChatBot - Check ChatBot with received confirmed messages and information about Virtual University")]
+        [Parallelizable]
+        public void WSBMainPage_ChatBot_CheckChatBotWithReceivedConfirmedMessagesWithInfoAboutVirtualUniversity()
+        {
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.AddArgument("--disable-notifications");
+
+            var driverSetup = new DriverSetup();
+            using (IWebDriver _driver = driverSetup.ReturnDriver(DriverType.Chrome))
+            {
+                var mainPageActions = new MainPageActions(_driver);
+                var commonElementsActions = new CommonElementsActions(_driver);
+                var cookiesHanlder = new CookiesHandler(_driver);
+                var chatBot = new ChatBot(_driver);
+
+                mainPageActions.NavigateToWSBMainPage();
+                commonElementsActions.ClickAcceptCookieButton();
+                cookiesHanlder.DeleteAllCookies();
+                _driver.Navigate().Refresh();
+                chatBot.SwitchToChatBotButtonFrame();
+                chatBot.ClickChatBotButton();
+                chatBot.SwitchToChatBotFrame();
+                chatBot.CheckWelcomeMessage();
+                chatBot.ClickChatBotYesButton();
+                chatBot.CheckAcceptedContactMessage();
+                chatBot.ClickChatBotYesButton();
+                chatBot.CheckSelectInformationCategoryMessage();
+                chatBot.ClickChatBotVirtualUniversityButton();
             }
         }
 

@@ -27,15 +27,27 @@ namespace PageObjects.Functionalities
 
         private IWebElement ChatBotWelcomeMessage => _driver.FindElement(By.XPath("//div[@class='usercom-message-content-wrapper']//p[contains(text(),'Cześć')]"));
 
-        private IWebElement ChatBotYesButton => _driver.FindElement(By.XPath("//div[@class='usercom-bot-answer-item']//*[text()[contains(.,'Tak')]]")); //TODO
+        private IWebElement ChatBotYesButton => _driver.FindElement(By.XPath("//div[@class='usercom-bot-answer-item']//*[text()[contains(.,'Tak')]]"));
 
-        private IWebElement ChatBotNoButton => _driver.FindElement(By.XPath("//div[@class='usercom-bot-answer-item']//*[text()[contains(.,'Nie')]]")); //TODO
+        private IWebElement ChatBotNoButton => _driver.FindElement(By.XPath("//div[@class='usercom-bot-answer-item']//*[text()[contains(.,'Nie')]]"));
 
-        private IWebElement ChatBotNotReceivedAnswerMessage => _driver.FindElement(By.XPath("//div[contains(@class,'lastMessageInGroup')]//p[contains(text(),'Nie otrzymałem')]"));
+        private IWebElement ChatBotVirtualUniversityButton => _driver.FindElement(By.XPath("//div[@class='usercom-bot-answer-item']//*[text()[contains(.,'Wirtualna Uczelnia')]]"));
 
-        private IWebElement ChatBotReceivedEmailMessage => _driver.FindElement(By.XPath("//div[contains(@class,'lastMessageInGroup')]//p[contains(text(),'Dziękujemy')]"));
+        private IWebElement ChatBotNotReceivedAnswerMessage => _driver.FindElement(By.XPath("//div[contains(@class,'usercom-message-content-wrapper')]//p[contains(text(),'Nie otrzymałem')]"));
+
+        private IWebElement ChatBotReceivedEmailMessage => _driver.FindElement(By.XPath("//div[contains(@class,'usercom-message-content-wrapper')]//p[contains(text(),'Dziękujemy')]"));
 
         private IWebElement ChatBotDeclinedContactMessage => _driver.FindElement(By.XPath("//div[@class='usercom-message-content-wrapper']//p[contains(text(),'Rozumiem.')]"));
+
+        private IWebElement ChatBotAcceptedContactThanksMessage => _driver.FindElement(By.XPath("//div[contains(@class,'usercom-message-content-wrapper')]//p[contains(text(),'Super!')]"));
+
+        private IWebElement ChatBotAcceptedContactQuestionMessage => _driver.FindElement(By.XPath("//div[contains(@class,'usercom-message-content-wrapper')]//p//strong"));
+
+        private IWebElement ChatBotSelectInformationCategoryMessage => _driver.FindElement(By.XPath("//div[@class='usercom-message-content-wrapper']//p[contains(text(),'Wybierz')]"));
+
+        private IWebElement ChatBotRedirectToVirtualUniversityMessage => _driver.FindElement(By.XPath("//div[contains(@class,'usercom-message-content-wrapper')]//p[contains(text(),'Aby przejść')]"));
+
+        private IWebElement ChatBotRedirectToVirtualUniversityLink => ChatBotRedirectToVirtualUniversityMessage.FindElement(By.XPath("//p[contains(text(),'Aby przejść')]/a[contains(text(),'kliknij')]")); //TODO
 
         private IWebElement ChatBotTextArea => _driver.FindElement(By.XPath("//input[@class='usercom-compose-textarea']"));
 
@@ -44,8 +56,17 @@ namespace PageObjects.Functionalities
             ["WelcomeMessage"] = "Cześć, tu automatyczny chatbot Akademii WSB. Jestem tu po to, by pomóc Ci znaleźć istotne informacje. Dasz mi szansę?",
             ["NotReveivedAnswerMessage"] = "Nie otrzymałem od Ciebie jednoznacznej odpowiedzi, więc przyjmuję, że nie jesteś w tej chwili zainteresowany/a rozmową ze mną. Jeśli jednak chcesz, by konsultant Akademii WSB skontaktował się z Tobą, zostaw nam swój adres e-mail",
             ["ReceivedEmailMessage"] = "Dziękujemy, skontaktujemy się z Tobą najszybciej, jak się da!",
-            ["DeclinedContactMessage"] = "Rozumiem. Zachęcam zatem do pozostawienia swojego adresu e-mail. Nasz konsultant skontaktuje się z Tobą, jak tylko wrócimy do pracy."
+            ["DeclinedContactMessage"] = "Rozumiem. Zachęcam zatem do pozostawienia swojego adresu e-mail. Nasz konsultant skontaktuje się z Tobą, jak tylko wrócimy do pracy.",
+            ["AcceptedContactThanksMessage"] = "Super! Proszę Cię zatem, odpowiedz na kilka pytań:",
+            ["AcceptedContactQuestionMessage"] = "Czy jesteś obecnie studentem/słuchaczem, doktorantem Akademii WSB?",
+            ["SelectInformationCategory"] = "Wybierz kategorię w obszarze, której poszukujesz informacji."
         };
+
+        public void ClickChatBotButton()
+        {
+            ChatBotButton.Displayed.Should().BeTrue();
+            ChatBotButton.Click();
+        }
 
         public void SwitchToChatBotButtonFrame()
         {
@@ -58,12 +79,6 @@ namespace PageObjects.Functionalities
             WaitForActions.WaitUntilFrameIsAvailable(_driver, "usercom-board-frame");
         }
 
-        public void ClickChatBotButton()
-        {
-            ChatBotButton.Displayed.Should().BeTrue();
-            ChatBotButton.Click();
-        }
-
         public void ClickChatBotYesButton()
         {
             ChatBotYesButton.Displayed.Should().BeTrue();
@@ -74,6 +89,12 @@ namespace PageObjects.Functionalities
         {
             ChatBotNoButton.Displayed.Should().BeTrue();
             ChatBotNoButton.Click();
+        }
+
+        public void ClickChatBotVirtualUniversityButton()
+        {
+            ChatBotVirtualUniversityButton.Displayed.Should().BeTrue();
+            ChatBotVirtualUniversityButton.Click();
         }
 
         public void EnterTextToTextArea(string message)
@@ -109,6 +130,19 @@ namespace PageObjects.Functionalities
         {
             WaitForActions.WaitUntilElementVisible(_driver, By.XPath("//div[@class='usercom-message-content-wrapper']//p[contains(text(),'Rozumiem.')]"));
             ChatBotDeclinedContactMessage.Text.Should().Be(ChatBotMessages["DeclinedContactMessage"]);
+        }
+
+        public void CheckAcceptedContactMessage()
+        {
+            WaitForActions.WaitUntilElementVisible(_driver, By.XPath("//div[contains(@class,'usercom-message-content-wrapper')]//p[contains(text(),'Super!')]"));
+            ChatBotAcceptedContactThanksMessage.Text.Should().Be(ChatBotMessages["AcceptedContactThanksMessage"]);
+            ChatBotAcceptedContactQuestionMessage.Text.Should().Be(ChatBotMessages["AcceptedContactQuestionMessage"]);
+        }
+
+        public void CheckSelectInformationCategoryMessage()
+        {
+            WaitForActions.WaitUntilElementVisible(_driver, By.XPath("//div[@class='usercom-message-content-wrapper']//p[contains(text(),'Wybierz')]"));
+            ChatBotSelectInformationCategoryMessage.Text.Should().Be(ChatBotMessages["SelectInformationCategory"]);
         }
 
         public void CheckReceivedEmailMessage()
