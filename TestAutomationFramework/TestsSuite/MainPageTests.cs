@@ -86,15 +86,16 @@ namespace TestSuite.TestsSuite
                 chatBot.SwitchToChatBotButtonFrame();
                 chatBot.ClickChatBotButton();
                 chatBot.SwitchToChatBotFrame();
+                chatBot.CheckChatBotHeadline();
                 chatBot.CheckWelcomeMessage();
             }
         }
 
         [Test]
         [Category("ChatBot")]
-        [Description("ChatBot - Check properly opened ChatBot with Welcome Message")]
+        [Description("ChatBot - Check ChatBot without received answer from user")]
         [Parallelizable]
-        public void WSBMainPage_ChatBot_CheckProperlyOpenedChatBotWithNoReceivedAnswer()
+        public void WSBMainPage_ChatBot_CheckChatBotWithNoReceivedUserAnswer()
         {
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.AddArgument("--disable-notifications");
@@ -115,7 +116,68 @@ namespace TestSuite.TestsSuite
                 chatBot.ClickChatBotButton();
                 chatBot.SwitchToChatBotFrame();
                 chatBot.CheckWelcomeMessage();
-                chatBot.CheckNotReceivedAnswerMessage();
+                chatBot.CheckNotReceivedUserAnswerMessage();
+            }
+        }
+
+        [Test]
+        [Category("ChatBot")]
+        [Description("ChatBot - Check ChatBot without received answer from user")]
+        [Parallelizable]
+        public void WSBMainPage_ChatBot_CheckChatBotWithNoReceivedUserAnswerAndSendedCorrectEmailFormat()
+        {
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.AddArgument("--disable-notifications");
+
+            var driverSetup = new DriverSetup();
+            using (IWebDriver _driver = driverSetup.ReturnDriver(DriverType.Chrome))
+            {
+                var mainPageActions = new MainPageActions(_driver);
+                var commonElementsActions = new CommonElementsActions(_driver);
+                var cookiesHanlder = new CookiesHandler(_driver);
+                var chatBot = new ChatBot(_driver);
+
+                mainPageActions.NavigateToWSBMainPage();
+                commonElementsActions.ClickAcceptCookieButton();
+                cookiesHanlder.DeleteAllCookies();
+                _driver.Navigate().Refresh();
+                chatBot.SwitchToChatBotButtonFrame();
+                chatBot.ClickChatBotButton();
+                chatBot.SwitchToChatBotFrame();
+                chatBot.CheckWelcomeMessage();
+                chatBot.CheckNotReceivedUserAnswerMessage();
+                chatBot.SendMessage("test@test.com");
+                chatBot.CheckReceivedEmailMessage();
+            }
+        }
+
+        [Test]
+        [Category("ChatBot")]
+        [Description(@"ChatBot - Check ChatBot with received answer 'No'")]
+        [Parallelizable]
+        public void WSBMainPage_ChatBot_CheckChatBotWithReceivedAnswerNo()
+        {
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.AddArgument("--disable-notifications");
+
+            var driverSetup = new DriverSetup();
+            using (IWebDriver _driver = driverSetup.ReturnDriver(DriverType.Chrome))
+            {
+                var mainPageActions = new MainPageActions(_driver);
+                var commonElementsActions = new CommonElementsActions(_driver);
+                var cookiesHanlder = new CookiesHandler(_driver);
+                var chatBot = new ChatBot(_driver);
+
+                mainPageActions.NavigateToWSBMainPage();
+                commonElementsActions.ClickAcceptCookieButton();
+                cookiesHanlder.DeleteAllCookies();
+                _driver.Navigate().Refresh();
+                chatBot.SwitchToChatBotButtonFrame();
+                chatBot.ClickChatBotButton();
+                chatBot.SwitchToChatBotFrame();
+                chatBot.CheckWelcomeMessage();
+                chatBot.ClickChatBotNoButton();
+                chatBot.CheckDeclinedContactMessage();
             }
         }
     }
