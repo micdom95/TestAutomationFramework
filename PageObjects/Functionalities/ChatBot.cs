@@ -49,6 +49,10 @@ namespace PageObjects.Functionalities
 
         private IWebElement ChatBotRedirectToVirtualUniversityLink => ChatBotRedirectToVirtualUniversityMessage.FindElement(By.XPath("//p[contains(text(),'Aby przejść')]/a[contains(text(),'kliknij')]")); //TODO
 
+        private IWebElement ChatBotWrongEmailFormatInformationContainer => _driver.FindElement(By.XPath("//div[@class='usercom-compose-wrapper']"));
+
+        private IWebElement ChatBotWrongEmailFormatInformation => _driver.FindElement(By.XPath("//div[@data-error]"));
+
         private IWebElement ChatBotTextArea => _driver.FindElement(By.XPath("//input[@class='usercom-compose-textarea']"));
 
         private Dictionary<string, string> ChatBotMessages = new Dictionary<string, string>()
@@ -149,6 +153,14 @@ namespace PageObjects.Functionalities
         {
             WaitForActions.WaitUntilElementVisible(_driver, By.XPath("//div[contains(@class,'lastMessageInGroup')]//p[contains(text(),'Dziękujemy')]"));
             ChatBotReceivedEmailMessage.Text.Should().Be(ChatBotMessages["ReceivedEmailMessage"]);
+        }
+
+        public void CheckWrongEmailFormatInformation()
+        {
+            WaitForActions.WaitUntilElementExists(_driver, By.XPath("//div[@class='usercom-compose-wrapper']"));
+            var attribute = ChatBotWrongEmailFormatInformationContainer.GetAttribute("data-error");
+            attribute.Should().Be("Wprowadź prawidłowy adres email");
+            ChatBotWrongEmailFormatInformation.Displayed.Should().BeTrue();
         }
     }
 }

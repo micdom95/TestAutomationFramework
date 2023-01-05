@@ -176,9 +176,10 @@ namespace TestSuite.TestsSuite
                 chatBot.ClickChatBotButton();
                 chatBot.SwitchToChatBotFrame();
                 chatBot.CheckWelcomeMessage();
-                chatBot.CheckNotReceivedUserAnswerMessage();
+                chatBot.ClickChatBotNoButton();
+                chatBot.CheckDeclinedContactMessage();
                 chatBot.SendMessage("IncorrectEmailFormat");
-                //TODO: Check label about incorrect Email
+                chatBot.CheckWrongEmailFormatInformation();
             }
         }
 
