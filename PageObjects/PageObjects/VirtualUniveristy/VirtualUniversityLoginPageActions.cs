@@ -28,7 +28,7 @@ namespace TestSuite.PageObjects.VirtualUniveristy
         public void NavigateToVirtualUniversityPage()
         {
             _driver.Navigate().GoToUrl("https://wu.wsb.edu.pl");
-            _driver.Url.Should().Contain("https://sts.wsb.edu.pl/adfs/ls/?SAMLRequest=");
+            CheckLoginPageUrl();
         }
 
         public void EnterTextToUsernameTextbox(string userName)
@@ -48,6 +48,11 @@ namespace TestSuite.PageObjects.VirtualUniveristy
             LoginButton.Displayed.Should().BeTrue();
             LoginButton.Text.Should().Be("Zaloguj");
             LoginButton.Click();
+        }
+
+        public void CheckLoginPageUrl()
+        {
+            _driver.Url.Should().Contain("https://sts.wsb.edu.pl/adfs/ls/?SAMLRequest=");
         }
 
         public void CheckEmptyLoginErrorMessage()

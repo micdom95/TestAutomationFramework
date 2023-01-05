@@ -101,6 +101,13 @@ namespace PageObjects.Functionalities
             ChatBotVirtualUniversityButton.Click();
         }
 
+        public void ClickChatBotRedirectToVirtualUniversityLink()
+        {
+            ChatBotRedirectToVirtualUniversityLink.Displayed.Should().BeTrue();
+            ChatBotRedirectToVirtualUniversityLink.Click();
+            WaitForActions.WaitForPageIsLoaded(_driver);
+        }
+
         public void EnterTextToTextArea(string message)
         {
             ChatBotTextArea.Displayed.Should().BeTrue();
@@ -153,6 +160,13 @@ namespace PageObjects.Functionalities
         {
             WaitForActions.WaitUntilElementVisible(_driver, By.XPath("//div[contains(@class,'lastMessageInGroup')]//p[contains(text(),'Dziękujemy')]"));
             ChatBotReceivedEmailMessage.Text.Should().Be(ChatBotMessages["ReceivedEmailMessage"]);
+        }
+
+        public void CheckRedirectToVirtualUniversityMessage()
+        {
+            WaitForActions.WaitUntilElementVisible(_driver, By.XPath("//div[contains(@class,'usercom-message-content-wrapper')]//p[contains(text(),'Aby przejść')]"));
+            ChatBotRedirectToVirtualUniversityMessage.Displayed.Should().BeTrue();
+            ChatBotRedirectToVirtualUniversityMessage.Text.Should().Be("Aby przejść na stronę wirtualnej uczelni kliknij tutaj.");
         }
 
         public void CheckWrongEmailFormatInformation()

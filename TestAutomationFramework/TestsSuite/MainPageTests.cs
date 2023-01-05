@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using TestSuite.Enums;
 using TestSuite.PageObjects.CommonElements;
 using TestSuite.PageObjects.MainPage;
+using TestSuite.PageObjects.VirtualUniveristy;
 
 namespace TestSuite.TestsSuite
 {
@@ -213,6 +214,43 @@ namespace TestSuite.TestsSuite
                 chatBot.ClickChatBotYesButton();
                 chatBot.CheckSelectInformationCategoryMessage();
                 chatBot.ClickChatBotVirtualUniversityButton();
+            }
+        }
+
+        [Test]
+        [Category("ChatBot")]
+        [Description(@"ChatBot - Check ChatBot redirecting to Virtual University with correct URL")]
+        [Parallelizable]
+        public void WSBMainPage_ChatBot_CheckChatBotWithReceivedConfirmedMessagesWithInfoAboutVirtualUniversityAndRedirectToProperUrl()
+        {
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.AddArgument("--disable-notifications");
+
+            var driverSetup = new DriverSetup();
+            using (IWebDriver _driver = driverSetup.ReturnDriver(DriverType.Chrome))
+            {
+                var mainPageActions = new MainPageActions(_driver);
+                var commonElementsActions = new CommonElementsActions(_driver);
+                var cookiesHanlder = new CookiesHandler(_driver);
+                var chatBot = new ChatBot(_driver);
+                var loginPageActions = new VirtualUniversityLoginPageActions(_driver);
+
+                mainPageActions.NavigateToWSBMainPage();
+                commonElementsActions.ClickAcceptCookieButton();
+                cookiesHanlder.DeleteAllCookies();
+                _driver.Navigate().Refresh();
+                chatBot.SwitchToChatBotButtonFrame();
+                chatBot.ClickChatBotButton();
+                chatBot.SwitchToChatBotFrame();
+                chatBot.CheckWelcomeMessage();
+                chatBot.ClickChatBotYesButton();
+                chatBot.CheckAcceptedContactMessage();
+                chatBot.ClickChatBotYesButton();
+                chatBot.CheckSelectInformationCategoryMessage();
+                chatBot.ClickChatBotVirtualUniversityButton();
+                chatBot.CheckRedirectToVirtualUniversityMessage();
+                chatBot.ClickChatBotRedirectToVirtualUniversityLink();
+                loginPageActions.CheckLoginPageUrl();
             }
         }
 
