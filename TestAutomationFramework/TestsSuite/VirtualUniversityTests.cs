@@ -1,4 +1,6 @@
-﻿using Automation_Logic.Setup.SecretsConfiguration;
+﻿using Automation_Logic.Setup.DriverSetup;
+using Automation_Logic.Setup.SecretsConfiguration;
+using AutomationLogic.Setup;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -16,23 +18,33 @@ namespace TestSuite.TestsSuite
     [TestFixture]
     public class VirtualUniversityTests
     {
+        IWebDriver _driver;
+        DriverSetup _driverSetup;
+        VirtualUniversityLoginPageActions _virtualUniversityLoginPageActions;
+
+        public VirtualUniversityTests()
+        {
+
+        }
+
+        [SetUp]
+        public void SetUpVirtualUniversityTestsFixture()
+        {
+            _driverSetup = new DriverSetup();
+            _driver = _driverSetup.ReturnDriver(DriverType.Chrome);
+            _virtualUniversityLoginPageActions = new VirtualUniversityLoginPageActions(_driver);
+        }
+
         [Test]
         [Category("Login Page")]
         [Parallelizable]
         public void VirtualUniversityLogin_LoginWithEmptyUserNameAndEmptyPassword_DisplayedErrorMessage()
         {
-            using (IWebDriver _driver = new ChromeDriver())
-            {
-                var virtualUniversityLoginPageActions = new VirtualUniversityLoginPageActions(_driver);
-                var commonElementsActions = new CommonElementsActions(_driver);
-                virtualUniversityLoginPageActions.NavigateToVirtualUniversityPage();
-                virtualUniversityLoginPageActions.EnterTextToUsernameTextbox("");
-                virtualUniversityLoginPageActions.EnterTextToPasswordTextbox("");
-                virtualUniversityLoginPageActions.ClickLoginButton();
-                virtualUniversityLoginPageActions.CheckEmptyLoginErrorMessage();
-
-                _driver.Close();
-            }
+            _virtualUniversityLoginPageActions.NavigateToVirtualUniversityPage();
+            _virtualUniversityLoginPageActions.EnterTextToUsernameTextbox("");
+            _virtualUniversityLoginPageActions.EnterTextToPasswordTextbox("");
+            _virtualUniversityLoginPageActions.ClickLoginButton();
+            _virtualUniversityLoginPageActions.CheckEmptyLoginErrorMessage();
         }
 
         [Test]
@@ -40,16 +52,11 @@ namespace TestSuite.TestsSuite
         [Parallelizable]
         public void VirtualUniversityLogin_LoginWithUserNameAndEmptyPassword_DisplayedErrorMessage()
         {
-            using (IWebDriver _driver = new ChromeDriver())
-            {
-                var virtualUniversityLoginPageActions = new VirtualUniversityLoginPageActions(_driver);
-                var commonElementsActions = new CommonElementsActions(_driver);
-                virtualUniversityLoginPageActions.NavigateToVirtualUniversityPage();
-                virtualUniversityLoginPageActions.EnterTextToUsernameTextbox("SomeFakeUserName@FakeDomain");
-                virtualUniversityLoginPageActions.EnterTextToPasswordTextbox("");
-                virtualUniversityLoginPageActions.ClickLoginButton();
-                virtualUniversityLoginPageActions.CheckEmptyPasswordErrorMessage();
-            }
+            _virtualUniversityLoginPageActions.NavigateToVirtualUniversityPage();
+            _virtualUniversityLoginPageActions.EnterTextToUsernameTextbox("SomeFakeUserName@FakeDomain");
+            _virtualUniversityLoginPageActions.EnterTextToPasswordTextbox("");
+            _virtualUniversityLoginPageActions.ClickLoginButton();
+            _virtualUniversityLoginPageActions.CheckEmptyPasswordErrorMessage();
         }
 
         [Test]
@@ -57,59 +64,52 @@ namespace TestSuite.TestsSuite
         [Parallelizable]
         public void VirtualUniversityLogin_LoginWithIncorrectUserNameAndIncorrectPassword_DisplayedErrorMessage()
         {
-            using (IWebDriver _driver = new ChromeDriver())
-            {
-
-                var virtualUniversityLoginPageActions = new VirtualUniversityLoginPageActions(_driver);
-                var commonElementsActions = new CommonElementsActions(_driver);
-                virtualUniversityLoginPageActions.NavigateToVirtualUniversityPage();
-                virtualUniversityLoginPageActions.EnterTextToUsernameTextbox("SomeFakeUserName@FakeDomain");
-                virtualUniversityLoginPageActions.EnterTextToPasswordTextbox("SomeFakePassword");
-                virtualUniversityLoginPageActions.ClickLoginButton();
-                virtualUniversityLoginPageActions.CheckWrongLoginErrorMessage();
-            }
+            _virtualUniversityLoginPageActions.NavigateToVirtualUniversityPage();
+            _virtualUniversityLoginPageActions.EnterTextToUsernameTextbox("SomeFakeUserName@FakeDomain");
+            _virtualUniversityLoginPageActions.EnterTextToPasswordTextbox("SomeFakePassword");
+            _virtualUniversityLoginPageActions.ClickLoginButton();
+            _virtualUniversityLoginPageActions.CheckWrongLoginErrorMessage();
         }
 
         [Test]
         [Category("Login Page")]
+        [Parallelizable]
         public void VirtualUniversityLogin_LoginWithCorrectCredentials_CorrectLogging()
         {
-            using (IWebDriver _driver = new ChromeDriver())
-            {
-                var virtualUniversityLoginPageActions = new VirtualUniversityLoginPageActions(_driver);
-                var commonElementsActions = new CommonElementsActions(_driver);
-                var virtualUniversityUserPageActions = new VirtualUniversityUserPageActions(_driver);
 
-                virtualUniversityLoginPageActions.NavigateToVirtualUniversityPage();
-                virtualUniversityLoginPageActions.EnterTextToUsernameTextbox(SecretsConfiguration.Instance.UserNameLoginEmail);
-                virtualUniversityLoginPageActions.EnterTextToPasswordTextbox(SecretsConfiguration.Instance.UserLoginPassword);
-                virtualUniversityLoginPageActions.ClickLoginButton();
-                virtualUniversityUserPageActions.CheckDefaultUrlAddressAfterLogIn();
-                virtualUniversityUserPageActions.CheckUserInfoLabel(SecretsConfiguration.Instance.UsernameInfo);
-                virtualUniversityUserPageActions.CheckUserAlbumNumberUserInfoLabel(SecretsConfiguration.Instance.UserAlbumNumber);
-            }
+            var virtualUniversityUserPageActions = new VirtualUniversityUserPageActions(_driver);
+
+            _virtualUniversityLoginPageActions.NavigateToVirtualUniversityPage();
+            _virtualUniversityLoginPageActions.EnterTextToUsernameTextbox(SecretsConfiguration.Instance.UserNameLoginEmail);
+            _virtualUniversityLoginPageActions.EnterTextToPasswordTextbox(SecretsConfiguration.Instance.UserLoginPassword);
+            _virtualUniversityLoginPageActions.ClickLoginButton();
+            virtualUniversityUserPageActions.CheckDefaultUrlAddressAfterLogIn();
+            virtualUniversityUserPageActions.CheckUserInfoLabel(SecretsConfiguration.Instance.UsernameInfo);
+            virtualUniversityUserPageActions.CheckUserAlbumNumberUserInfoLabel(SecretsConfiguration.Instance.UserAlbumNumber);
         }
 
         [Test]
         [Category("Translations - User Page - Polish Language")]
         [Description("This Test will start from Logging Page because we can't do HTTP Request with authorization")]
+        [Parallelizable]
         public void VirtualUniversityUserPageTranslation_PolishTranslations_CorrectTranslation()
         {
-            using (IWebDriver _driver = new ChromeDriver())
-            {
-                var virtualUniversityLoginPageActions = new VirtualUniversityLoginPageActions(_driver);
-                var commonElementsActions = new CommonElementsActions(_driver);
-                var virtualUniversityUserPageActions = new VirtualUniversityUserPageActions(_driver);
+            var virtualUniversityUserPageActions = new VirtualUniversityUserPageActions(_driver);
 
-                virtualUniversityLoginPageActions.NavigateToVirtualUniversityPage();
-                virtualUniversityLoginPageActions.EnterTextToUsernameTextbox(SecretsConfiguration.Instance.UserNameLoginEmail);
-                virtualUniversityLoginPageActions.EnterTextToPasswordTextbox(SecretsConfiguration.Instance.UserLoginPassword);
-                virtualUniversityLoginPageActions.ClickLoginButton();
-                virtualUniversityUserPageActions.CheckDefaultUrlAddressAfterLogIn();
-                virtualUniversityUserPageActions.CheckUserInfoLabel(SecretsConfiguration.Instance.UsernameInfo);
-                virtualUniversityUserPageActions.CheckUserAlbumNumberUserInfoLabel(SecretsConfiguration.Instance.UserAlbumNumber);
-                virtualUniversityUserPageActions.CheckAnnouncementsPageTranslations(Languages.Polish);
-            }
+            _virtualUniversityLoginPageActions.NavigateToVirtualUniversityPage();
+            _virtualUniversityLoginPageActions.EnterTextToUsernameTextbox(SecretsConfiguration.Instance.UserNameLoginEmail);
+            _virtualUniversityLoginPageActions.EnterTextToPasswordTextbox(SecretsConfiguration.Instance.UserLoginPassword);
+            _virtualUniversityLoginPageActions.ClickLoginButton();
+            virtualUniversityUserPageActions.CheckDefaultUrlAddressAfterLogIn();
+            virtualUniversityUserPageActions.CheckUserInfoLabel(SecretsConfiguration.Instance.UsernameInfo);
+            virtualUniversityUserPageActions.CheckUserAlbumNumberUserInfoLabel(SecretsConfiguration.Instance.UserAlbumNumber);
+            virtualUniversityUserPageActions.CheckAnnouncementsPageTranslations(Languages.Polish);
+        }
+
+        [TearDown]
+        public void TearDownVirtualUniversityTestFixture()
+        {
+            _driver.Quit();
         }
     }
 }
