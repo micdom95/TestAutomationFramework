@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
+using TestSuite.Enums;
 using TestSuite.PageObjects.VirtualUniveristy;
 
 namespace BDDSpecFlowTestSuite.Steps
@@ -37,10 +38,11 @@ namespace BDDSpecFlowTestSuite.Steps
             _virtualUniversityUserPageActions.CheckUserAlbumNumberUserInfoLabel(SecretsConfiguration.Instance.UserAlbumNumber);
         }
 
-        [Then(@"I can see correct (.*) language translation on Announcements Page")]
+        [Then(@"I can see correct (.*) translation on Announcements Page")]
         public void AssertCorrectPolishLanguageTranslationOnUserPage(string language)
         {
-            _virtualUniversityUserPageActions.CheckAnnouncementsPageTranslations(language);
+            Languages languageEnum = (Languages)Enum.Parse(typeof(Languages), language);
+            _virtualUniversityUserPageActions.CheckAnnouncementsPageTranslations(languageEnum);
         }
     }
 }

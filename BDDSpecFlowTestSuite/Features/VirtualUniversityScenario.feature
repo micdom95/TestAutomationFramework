@@ -29,11 +29,16 @@ Then I can see default URL Address
 And I can see correct User Info
 And I can see correct User Album Number
 
-Scenario: Virtual University User Page has correct Polish language translation on Announcements
+Scenario: Virtual University User Page has correct language translation on Announcements
 When I enter correct Username to Username field
 And I enter correct Password to Password field
 And I click login button
 Then I can see default URL Address
 And I can see correct User Info
 And I can see correct User Album Number
-And I can see correct Polish language translation on Announcements Page
+And I can see correct "<LanguageType>" translation on Announcements Page
+
+Examples: 
+| LanguageType |
+| Polish       |
+| English      |
