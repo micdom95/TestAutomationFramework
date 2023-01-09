@@ -11,9 +11,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestSuite", "TestAutomation
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationLogic", "Automation Logic\AutomationLogic.csproj", "{F638D911-4E44-4D03-A5D6-9C5B25C9D1D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PageObjects", "PageObjects\PageObjects.csproj", "{28839833-1BDC-441B-A987-DE1232F0F1F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PageObjects", "PageObjects\PageObjects.csproj", "{28839833-1BDC-441B-A987-DE1232F0F1F6}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F638D911-4E44-4D03-A5D6-9C5B25C9D1D9} = {F638D911-4E44-4D03-A5D6-9C5B25C9D1D9}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BDDSpecFlowTestSuite", "BDDSpecFlowTestSuite\BDDSpecFlowTestSuite.csproj", "{E5D6B086-C70F-4F70-A2C4-A204C7E8D485}"
+	ProjectSection(ProjectDependencies) = postProject
+		{28839833-1BDC-441B-A987-DE1232F0F1F6} = {28839833-1BDC-441B-A987-DE1232F0F1F6}
 	EndProjectSection
 EndProject
 Global
@@ -34,6 +39,10 @@ Global
 		{28839833-1BDC-441B-A987-DE1232F0F1F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28839833-1BDC-441B-A987-DE1232F0F1F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28839833-1BDC-441B-A987-DE1232F0F1F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5D6B086-C70F-4F70-A2C4-A204C7E8D485}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5D6B086-C70F-4F70-A2C4-A204C7E8D485}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5D6B086-C70F-4F70-A2C4-A204C7E8D485}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5D6B086-C70F-4F70-A2C4-A204C7E8D485}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
