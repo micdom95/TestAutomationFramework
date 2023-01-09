@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AutomationLogic.Handlers;
+using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,11 +13,27 @@ namespace BDDSpecFlowTestSuite.Steps
     [Binding]
     public class CommonSteps
     {
+        IWebDriver _driver;
+        CookiesHandler _cookiesHandler;
         CommonElementsActions _commonElementsActions;
 
-        public CommonSteps(CommonElementsActions commonElementsActions)
+        public CommonSteps(IWebDriver driver, CommonElementsActions commonElementsActions, CookiesHandler cookiesHandler)
         {
+            _driver = driver;
+            _cookiesHandler = cookiesHandler;
             _commonElementsActions = commonElementsActions;
+        }
+
+        [Given(@"Page is refreshed")]
+        public void RefreshPage()
+        {
+            _driver.Navigate().Refresh();
+        }
+
+        [Given(@"Cookies are deleted")]
+        public void DeleteAllCookies()
+        {
+            _cookiesHandler.DeleteAllCookies();
         }
 
         [Given(@"Cookies are accepted by button clicking")]

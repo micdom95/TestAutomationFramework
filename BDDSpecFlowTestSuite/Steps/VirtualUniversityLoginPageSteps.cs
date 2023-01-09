@@ -75,5 +75,11 @@ namespace BDDSpecFlowTestSuite.Steps
             _virtualUniversityLoginPageActions.CheckWrongLoginErrorMessage();
         }
 
+        [Then(@"I am redirected to Login Page with correct URL")]
+        public void AssertRedirectionToLoginPageWithCorrectURL()
+        {
+            _virtualUniversityLoginPageActions.CheckLoginPageUrl();
+        }
+
     }
 }

@@ -215,6 +215,7 @@ namespace TestSuite.TestsSuite
                 chatBot.ClickChatBotYesButton();
                 chatBot.CheckSelectInformationCategoryMessage();
                 chatBot.ClickChatBotVirtualUniversityButton();
+                chatBot.CheckRedirectToVirtualUniversityMessage();
             }
         }
 
