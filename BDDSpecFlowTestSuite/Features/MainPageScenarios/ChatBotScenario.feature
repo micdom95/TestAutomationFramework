@@ -7,7 +7,6 @@ Background:
 	And Page is refreshed
 	And Frame is switched to ChatBot button
 
-@mytag
 Scenario: ChatBot opened properly with Welcome Message
 	When I click ChatBot button
 	And I switch to ChatBot Frame

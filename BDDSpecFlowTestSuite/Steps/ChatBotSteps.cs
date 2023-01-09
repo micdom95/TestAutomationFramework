@@ -62,7 +62,6 @@ namespace BDDSpecFlowTestSuite.Steps
             _chatBot.ClickChatBotRedirectToVirtualUniversityLink();
         }
 
-
         [Then(@"I can see proper ChatBot Headline")]
         public void AssertProperChatBotHeadline()
         {
@@ -110,6 +109,5 @@ namespace BDDSpecFlowTestSuite.Steps
         {
             _chatBot.CheckRedirectToVirtualUniversityMessage();
         }
-
     }
 }

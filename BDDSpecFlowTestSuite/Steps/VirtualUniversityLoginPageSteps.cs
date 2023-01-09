@@ -50,7 +50,6 @@ namespace BDDSpecFlowTestSuite.Steps
             _virtualUniversityLoginPageActions.EnterTextToPasswordTextbox(SecretsConfiguration.Instance.UserLoginPassword);
         }
 
-
         [When(@"I click login button")]
         public void ClickLoginButton()
         {
@@ -80,6 +79,5 @@ namespace BDDSpecFlowTestSuite.Steps
         {
             _virtualUniversityLoginPageActions.CheckLoginPageUrl();
         }
-
     }
 }
