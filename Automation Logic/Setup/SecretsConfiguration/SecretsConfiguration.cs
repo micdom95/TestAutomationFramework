@@ -120,10 +120,18 @@ namespace Automation_Logic.Setup.SecretsConfiguration
         }
         private void SetupConfiguration()
         {
-            string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string file = @"\..\..\..\..\AutomationLogic\Setup\SecretsConfiguration\SecretsSettings.json";
-            string fullFilePath = Path.GetFullPath(currentDirectory + file);
-            _configuration = new ConfigurationBuilder().AddJsonFile(fullFilePath).Build();
+            try
+            {
+                string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string file = @"\..\..\..\..\AutomationLogic\Setup\SecretsConfiguration\SecretsSettings.json";
+                string fullFilePath = Path.GetFullPath(currentDirectory + file);
+                _configuration = new ConfigurationBuilder().AddJsonFile(fullFilePath).Build();
+            }
+            catch (Exception)
+            {
+                var json = "{\"General\":{\"UserNameLoginEmail\":\"TestLogin\",\"UserLoginPassword\":\"TestPassword\"}}";
+                _configuration = new ConfigurationBuilder().AddJsonStream(new MemoryStream(Encoding.ASCII.GetBytes(json))).Build();
+            }
         }
 
         private void SetupConfigurationFromDefaultDestination()

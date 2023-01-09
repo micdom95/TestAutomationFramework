@@ -15,30 +15,22 @@ using TestSuite.PageObjects.VirtualUniveristy;
 
 namespace TestSuite.TestsSuite
 {
+    using static SetUpTestsConfiguration;
     [TestFixture]
     public class VirtualUniversityTests
     {
-        IWebDriver _driver;
-        DriverSetup _driverSetup;
         VirtualUniversityLoginPageActions _virtualUniversityLoginPageActions;
-
-        public VirtualUniversityTests()
-        {
-
-        }
 
         [SetUp]
         public void SetUpVirtualUniversityTestsFixture()
         {
-            _driverSetup = new DriverSetup();
-            _driver = _driverSetup.ReturnDriver(DriverType.Chrome);
             _virtualUniversityLoginPageActions = new VirtualUniversityLoginPageActions(_driver);
         }
 
         [Test]
         [Category("Login Page")]
         [Parallelizable]
-        public void VirtualUniversityLogin_LoginWithEmptyUserNameAndEmptyPassword_DisplayedErrorMessage()
+        public void VirtualUniversityLogin_LogInWithEmptyUserNameAndEmptyPassword_DisplayedErrorMessage()
         {
             _virtualUniversityLoginPageActions.NavigateToVirtualUniversityPage();
             _virtualUniversityLoginPageActions.EnterTextToUsernameTextbox("");

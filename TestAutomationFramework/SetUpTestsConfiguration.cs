@@ -13,19 +13,14 @@ namespace TestSuite
     [SetUpFixture]
     public class SetUpTestsConfiguration
     {
-        DriverType _driverType;
-        IWebDriver _driver;
-        DriverSetup _driverSetup;
+        static DriverType _driverType;
+        public static IWebDriver _driver;
+        static DriverSetup _driverSetup;
 
-        public SetUpTestsConfiguration()
-        {
-
-        }
-
-        public SetUpTestsConfiguration(DriverType driverType)
-        {
-            _driverType = driverType;
-        }
+        //public SetUpTestsConfiguration(DriverType driverType)
+        //{
+        //    _driverType = driverType;
+        //}
 
         [OneTimeSetUp]
         public void TestConfigurationSetUp()
