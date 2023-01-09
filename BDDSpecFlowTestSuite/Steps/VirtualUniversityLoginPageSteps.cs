@@ -20,6 +20,7 @@ namespace BDDSpecFlowTestSuite.Steps
         }
 
         [Given(@"Opened Virtual University Login Page")]
+        [When(@"I navigate to Virtual University Login Page")]
         public void OpenVirtualUniversityLoginPage()
         {
             _virtualUniversityLoginPageActions.NavigateToVirtualUniversityPage();
