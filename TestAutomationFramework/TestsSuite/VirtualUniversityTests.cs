@@ -19,11 +19,15 @@ namespace TestSuite.TestsSuite
     [TestFixture]
     public class VirtualUniversityTests
     {
+        DriverSetup _driverSetup;
+        IWebDriver _driver;
         VirtualUniversityLoginPageActions _virtualUniversityLoginPageActions;
 
         [SetUp]
         public void SetUpVirtualUniversityTestsFixture()
         {
+            _driverSetup = new DriverSetup();
+            _driver = _driverSetup.ReturnDriver(_driverType);
             _virtualUniversityLoginPageActions = new VirtualUniversityLoginPageActions(_driver);
         }
 
