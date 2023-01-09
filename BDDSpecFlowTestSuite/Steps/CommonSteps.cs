@@ -9,11 +9,11 @@ using TestSuite.PageObjects.CommonElements;
 namespace BDDSpecFlowTestSuite.Steps
 {
     [Binding]
-    public class CommonElementsSteps
+    public class CommonSteps
     {
         CommonElementsActions _commonElementsActions;
 
-        public CommonElementsSteps(CommonElementsActions commonElementsActions)
+        public CommonSteps(CommonElementsActions commonElementsActions)
         {
             _commonElementsActions = commonElementsActions;
         }

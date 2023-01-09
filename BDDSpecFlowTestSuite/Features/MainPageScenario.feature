@@ -18,3 +18,11 @@ Examples:
 | TypedPhrases |
 | TestPhrase   |
 | 1234567890   |
+
+Scenario: ChatBot opened properly with Welcome Message
+Scenario: ChatBot send message without received message from user
+Scenario: ChatBot send message without received message from user and receive Email from user in correct format
+Scenario: ChatBot send message without received message from user and receive Email from user in incorrect format
+Scenario: ChatBot received confirmation message from user and give information about Virtual University
+Scenario: ChatBot received confirmation message from user and redirect user to Virtual University Login Page
+Scenario: ChatBot received 'No' answer from user
