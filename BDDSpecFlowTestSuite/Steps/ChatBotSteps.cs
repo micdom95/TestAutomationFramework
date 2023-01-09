@@ -19,7 +19,7 @@ namespace BDDSpecFlowTestSuite.Steps
         }
 
         [Given(@"Frame is switched to ChatBot button")]
-        public void SwitchToChatBotFrame()
+        public void SwitchToChatBotButtonFrame()
         {
             _chatBot.SwitchToChatBotButtonFrame();
         }
