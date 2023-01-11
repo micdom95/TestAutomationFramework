@@ -20,26 +20,37 @@ using TestSuite.PageObjects.VirtualUniveristy;
 
 namespace TestSuite.TestsSuite
 {
+    using static SetUpTestsConfiguration;
+    
     [TestFixture]
     public class MainPageTests
     {
+        DriverSetup _driverSetup;
+        IWebDriver _driver;
+        MainPageActions _mainPageActions;
+        CommonElementsActions _commonElementsActions;
+        CookiesHandler _cookiesHandler;
+        ChatBot _chatBot;
+
+        [SetUp]
+        public void SetUpVirtualUniversityTestsFixture()
+        {
+            _driverSetup = new DriverSetup();
+            _driver = _driverSetup.ReturnDriver(_driverType);
+            _mainPageActions = new MainPageActions(_driver);
+            _commonElementsActions = new CommonElementsActions(_driver);
+            _cookiesHandler = new CookiesHandler(_driver);
+            _chatBot = new ChatBot(_driver);
+        }
+
         [Test]
         [Category("Smoke Test")]
         [Parallelizable]
         public void WSBMainPage_OpeningWSBMainPage_WSBMainPageOpenedProperly()
         {
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.AddArgument("--disable-notifications");
-            var driverSetup = new DriverSetup();
-
-            using (IWebDriver _driver = driverSetup.ReturnDriver(DriverType.Chrome))
-            {
-                var mainPageActions = new MainPageActions(_driver);
-                var commonElementsActions = new CommonElementsActions(_driver);
-                mainPageActions.NavigateToWSBMainPage();
-                commonElementsActions.ClickAcceptCookieButton();
-                mainPageActions.CheckMainPanelTranslations(Languages.Polish);
-            }
+            _mainPageActions.NavigateToWSBMainPage();
+            _commonElementsActions.ClickAcceptCookieButton();
+            _mainPageActions.CheckMainPanelTranslations(Languages.Polish);
         }
 
         [Test]
@@ -49,18 +60,10 @@ namespace TestSuite.TestsSuite
         [Parallelizable]
         public void WSBMainPage_SearchEngineTest_SearchEngineFindsProperPhrase(string searchText)
         {
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.AddArgument("--disable-notifications");
-            var driverSetup = new DriverSetup();
-            using (IWebDriver _driver = driverSetup.ReturnDriver(DriverType.Chrome))
-            {
-                var mainPageActions = new MainPageActions(_driver);
-                var commonElementsActions = new CommonElementsActions(_driver);
-                mainPageActions.NavigateToWSBMainPage();
-                commonElementsActions.ClickAcceptCookieButton();
-                mainPageActions.SearchTextInSearchEngine(searchText, Languages.Polish);
-                mainPageActions.CheckSearchResultLabel(searchText);
-            }
+            _mainPageActions.NavigateToWSBMainPage();
+            _commonElementsActions.ClickAcceptCookieButton();
+            _mainPageActions.SearchTextInSearchEngine(searchText, Languages.Polish);
+            _mainPageActions.CheckSearchResultLabel(searchText);
         }
 
         [Test]
@@ -69,27 +72,15 @@ namespace TestSuite.TestsSuite
         [Parallelizable]
         public void WSBMainPage_ChatBot_CheckProperlyOpenedChatBotWithWelcomeMessage()
         {
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.AddArgument("--disable-notifications");
-
-            var driverSetup = new DriverSetup();
-            using (IWebDriver _driver = driverSetup.ReturnDriver(DriverType.Chrome))
-            {
-                var mainPageActions = new MainPageActions(_driver);
-                var commonElementsActions = new CommonElementsActions(_driver);
-                var cookiesHanlder = new CookiesHandler(_driver);
-                var chatBot = new ChatBot(_driver);
-
-                mainPageActions.NavigateToWSBMainPage();
-                commonElementsActions.ClickAcceptCookieButton();
-                cookiesHanlder.DeleteAllCookies();
-                _driver.Navigate().Refresh();
-                chatBot.SwitchToChatBotButtonFrame();
-                chatBot.ClickChatBotButton();
-                chatBot.SwitchToChatBotFrame();
-                chatBot.CheckChatBotHeadline();
-                chatBot.CheckWelcomeMessage();
-            }
+            _mainPageActions.NavigateToWSBMainPage();
+            _commonElementsActions.ClickAcceptCookieButton();
+            _cookiesHandler.DeleteAllCookies();
+            _driver.Navigate().Refresh();
+            _chatBot.SwitchToChatBotButtonFrame();
+            _chatBot.ClickChatBotButton();
+            _chatBot.SwitchToChatBotFrame();
+            _chatBot.CheckChatBotHeadline();
+            _chatBot.CheckWelcomeMessage();
         }
 
         [Test]
@@ -98,27 +89,15 @@ namespace TestSuite.TestsSuite
         [Parallelizable]
         public void WSBMainPage_ChatBot_CheckChatBotWithNoReceivedUserAnswer()
         {
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.AddArgument("--disable-notifications");
-
-            var driverSetup = new DriverSetup();
-            using (IWebDriver _driver = driverSetup.ReturnDriver(DriverType.Chrome))
-            {
-                var mainPageActions = new MainPageActions(_driver);
-                var commonElementsActions = new CommonElementsActions(_driver);
-                var cookiesHanlder = new CookiesHandler(_driver);
-                var chatBot = new ChatBot(_driver);
-
-                mainPageActions.NavigateToWSBMainPage();
-                commonElementsActions.ClickAcceptCookieButton();
-                cookiesHanlder.DeleteAllCookies();
-                _driver.Navigate().Refresh();
-                chatBot.SwitchToChatBotButtonFrame();
-                chatBot.ClickChatBotButton();
-                chatBot.SwitchToChatBotFrame();
-                chatBot.CheckWelcomeMessage();
-                chatBot.CheckNotReceivedUserAnswerMessage();
-            }
+            _mainPageActions.NavigateToWSBMainPage();
+            _commonElementsActions.ClickAcceptCookieButton();
+            _cookiesHandler.DeleteAllCookies();
+            _driver.Navigate().Refresh();
+            _chatBot.SwitchToChatBotButtonFrame();
+            _chatBot.ClickChatBotButton();
+            _chatBot.SwitchToChatBotFrame();
+            _chatBot.CheckWelcomeMessage();
+            _chatBot.CheckNotReceivedUserAnswerMessage();
         }
 
         [Test]
@@ -127,29 +106,17 @@ namespace TestSuite.TestsSuite
         [Parallelizable]
         public void WSBMainPage_ChatBot_CheckChatBotWithNoReceivedUserAnswerAndSendedCorrectEmailFormat()
         {
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.AddArgument("--disable-notifications");
-
-            var driverSetup = new DriverSetup();
-            using (IWebDriver _driver = driverSetup.ReturnDriver(DriverType.Chrome))
-            {
-                var mainPageActions = new MainPageActions(_driver);
-                var commonElementsActions = new CommonElementsActions(_driver);
-                var cookiesHanlder = new CookiesHandler(_driver);
-                var chatBot = new ChatBot(_driver);
-
-                mainPageActions.NavigateToWSBMainPage();
-                commonElementsActions.ClickAcceptCookieButton();
-                cookiesHanlder.DeleteAllCookies();
-                _driver.Navigate().Refresh();
-                chatBot.SwitchToChatBotButtonFrame();
-                chatBot.ClickChatBotButton();
-                chatBot.SwitchToChatBotFrame();
-                chatBot.CheckWelcomeMessage();
-                chatBot.CheckNotReceivedUserAnswerMessage();
-                chatBot.SendMessage("test@test.com");
-                chatBot.CheckReceivedEmailMessage();
-            }
+            _mainPageActions.NavigateToWSBMainPage();
+            _commonElementsActions.ClickAcceptCookieButton();
+            _cookiesHandler.DeleteAllCookies();
+            _driver.Navigate().Refresh();
+            _chatBot.SwitchToChatBotButtonFrame();
+            _chatBot.ClickChatBotButton();
+            _chatBot.SwitchToChatBotFrame();
+            _chatBot.CheckWelcomeMessage();
+            _chatBot.CheckNotReceivedUserAnswerMessage();
+            _chatBot.SendMessage("test@test.com");
+            _chatBot.CheckReceivedEmailMessage();
         }
 
         [Test]
@@ -158,30 +125,18 @@ namespace TestSuite.TestsSuite
         [Parallelizable]
         public void WSBMainPage_ChatBot_CheckChatBotWithNoReceivedUserAnswerAndSendedIncorrectEmailFormat()
         {
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.AddArgument("--disable-notifications");
-
-            var driverSetup = new DriverSetup();
-            using (IWebDriver _driver = driverSetup.ReturnDriver(DriverType.Chrome))
-            {
-                var mainPageActions = new MainPageActions(_driver);
-                var commonElementsActions = new CommonElementsActions(_driver);
-                var cookiesHanlder = new CookiesHandler(_driver);
-                var chatBot = new ChatBot(_driver);
-
-                mainPageActions.NavigateToWSBMainPage();
-                commonElementsActions.ClickAcceptCookieButton();
-                cookiesHanlder.DeleteAllCookies();
-                _driver.Navigate().Refresh();
-                chatBot.SwitchToChatBotButtonFrame();
-                chatBot.ClickChatBotButton();
-                chatBot.SwitchToChatBotFrame();
-                chatBot.CheckWelcomeMessage();
-                chatBot.ClickChatBotNoButton();
-                chatBot.CheckDeclinedContactMessage();
-                chatBot.SendMessage("IncorrectEmailFormat");
-                chatBot.CheckWrongEmailFormatInformation();
-            }
+            _mainPageActions.NavigateToWSBMainPage();
+            _commonElementsActions.ClickAcceptCookieButton();
+            _cookiesHandler.DeleteAllCookies();
+            _driver.Navigate().Refresh();
+            _chatBot.SwitchToChatBotButtonFrame();
+            _chatBot.ClickChatBotButton();
+            _chatBot.SwitchToChatBotFrame();
+            _chatBot.CheckWelcomeMessage();
+            _chatBot.ClickChatBotNoButton();
+            _chatBot.SendMessage("IncorrectEmailFormat");
+            _chatBot.CheckDeclinedContactMessage();
+            _chatBot.CheckWrongEmailFormatInformation();
         }
 
         [Test]
@@ -190,32 +145,20 @@ namespace TestSuite.TestsSuite
         [Parallelizable]
         public void WSBMainPage_ChatBot_CheckChatBotWithReceivedConfirmedMessagesWithInfoAboutVirtualUniversity()
         {
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.AddArgument("--disable-notifications");
-
-            var driverSetup = new DriverSetup();
-            using (IWebDriver _driver = driverSetup.ReturnDriver(DriverType.Chrome))
-            {
-                var mainPageActions = new MainPageActions(_driver);
-                var commonElementsActions = new CommonElementsActions(_driver);
-                var cookiesHanlder = new CookiesHandler(_driver);
-                var chatBot = new ChatBot(_driver);
-
-                mainPageActions.NavigateToWSBMainPage();
-                commonElementsActions.ClickAcceptCookieButton();
-                cookiesHanlder.DeleteAllCookies();
-                _driver.Navigate().Refresh();
-                chatBot.SwitchToChatBotButtonFrame();
-                chatBot.ClickChatBotButton();
-                chatBot.SwitchToChatBotFrame();
-                chatBot.CheckWelcomeMessage();
-                chatBot.ClickChatBotYesButton();
-                chatBot.CheckAcceptedContactMessage();
-                chatBot.ClickChatBotYesButton();
-                chatBot.CheckSelectInformationCategoryMessage();
-                chatBot.ClickChatBotVirtualUniversityButton();
-                chatBot.CheckRedirectToVirtualUniversityMessage();
-            }
+            _mainPageActions.NavigateToWSBMainPage();
+            _commonElementsActions.ClickAcceptCookieButton();
+            _cookiesHandler.DeleteAllCookies();
+            _driver.Navigate().Refresh();
+            _chatBot.SwitchToChatBotButtonFrame();
+            _chatBot.ClickChatBotButton();
+            _chatBot.SwitchToChatBotFrame();
+            _chatBot.CheckWelcomeMessage();
+            _chatBot.ClickChatBotYesButton();
+            _chatBot.CheckAcceptedContactMessage();
+            _chatBot.ClickChatBotYesButton();
+            _chatBot.CheckSelectInformationCategoryMessage();
+            _chatBot.ClickChatBotVirtualUniversityButton();
+            _chatBot.CheckRedirectToVirtualUniversityMessage();
         }
 
         [Test]
@@ -224,35 +167,23 @@ namespace TestSuite.TestsSuite
         [Parallelizable]
         public void WSBMainPage_ChatBot_CheckChatBotWithReceivedConfirmedMessagesWithInfoAboutVirtualUniversityAndRedirectToProperUrl()
         {
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.AddArgument("--disable-notifications");
-
-            var driverSetup = new DriverSetup();
-            using (IWebDriver _driver = driverSetup.ReturnDriver(DriverType.Chrome))
-            {
-                var mainPageActions = new MainPageActions(_driver);
-                var commonElementsActions = new CommonElementsActions(_driver);
-                var cookiesHanlder = new CookiesHandler(_driver);
-                var chatBot = new ChatBot(_driver);
-                var loginPageActions = new VirtualUniversityLoginPageActions(_driver);
-
-                mainPageActions.NavigateToWSBMainPage();
-                commonElementsActions.ClickAcceptCookieButton();
-                cookiesHanlder.DeleteAllCookies();
-                _driver.Navigate().Refresh();
-                chatBot.SwitchToChatBotButtonFrame();
-                chatBot.ClickChatBotButton();
-                chatBot.SwitchToChatBotFrame();
-                chatBot.CheckWelcomeMessage();
-                chatBot.ClickChatBotYesButton();
-                chatBot.CheckAcceptedContactMessage();
-                chatBot.ClickChatBotYesButton();
-                chatBot.CheckSelectInformationCategoryMessage();
-                chatBot.ClickChatBotVirtualUniversityButton();
-                chatBot.CheckRedirectToVirtualUniversityMessage();
-                chatBot.ClickChatBotRedirectToVirtualUniversityLink();
-                loginPageActions.CheckLoginPageUrl();
-            }
+            var loginPageActions = new VirtualUniversityLoginPageActions(_driver);
+            _mainPageActions.NavigateToWSBMainPage();
+            _commonElementsActions.ClickAcceptCookieButton();
+            _cookiesHandler.DeleteAllCookies();
+            _driver.Navigate().Refresh();
+            _chatBot.SwitchToChatBotButtonFrame();
+            _chatBot.ClickChatBotButton();
+            _chatBot.SwitchToChatBotFrame();
+            _chatBot.CheckWelcomeMessage();
+            _chatBot.ClickChatBotYesButton();
+            _chatBot.CheckAcceptedContactMessage();
+            _chatBot.ClickChatBotYesButton();
+            _chatBot.CheckSelectInformationCategoryMessage();
+            _chatBot.ClickChatBotVirtualUniversityButton();
+            _chatBot.CheckRedirectToVirtualUniversityMessage();
+            _chatBot.ClickChatBotRedirectToVirtualUniversityLink();
+            loginPageActions.CheckLoginPageUrl();
         }
 
         [Test]
@@ -261,28 +192,22 @@ namespace TestSuite.TestsSuite
         [Parallelizable]
         public void WSBMainPage_ChatBot_CheckChatBotWithReceivedAnswerNo()
         {
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.AddArgument("--disable-notifications");
+            _mainPageActions.NavigateToWSBMainPage();
+            _commonElementsActions.ClickAcceptCookieButton();
+            _cookiesHandler.DeleteAllCookies();
+            _driver.Navigate().Refresh();
+            _chatBot.SwitchToChatBotButtonFrame();
+            _chatBot.ClickChatBotButton();
+            _chatBot.SwitchToChatBotFrame();
+            _chatBot.CheckWelcomeMessage();
+            _chatBot.ClickChatBotNoButton();
+            _chatBot.CheckDeclinedContactMessage();
+        }
 
-            var driverSetup = new DriverSetup();
-            using (IWebDriver _driver = driverSetup.ReturnDriver(DriverType.Chrome))
-            {
-                var mainPageActions = new MainPageActions(_driver);
-                var commonElementsActions = new CommonElementsActions(_driver);
-                var cookiesHanlder = new CookiesHandler(_driver);
-                var chatBot = new ChatBot(_driver);
-
-                mainPageActions.NavigateToWSBMainPage();
-                commonElementsActions.ClickAcceptCookieButton();
-                cookiesHanlder.DeleteAllCookies();
-                _driver.Navigate().Refresh();
-                chatBot.SwitchToChatBotButtonFrame();
-                chatBot.ClickChatBotButton();
-                chatBot.SwitchToChatBotFrame();
-                chatBot.CheckWelcomeMessage();
-                chatBot.ClickChatBotNoButton();
-                chatBot.CheckDeclinedContactMessage();
-            }
+        [TearDown]
+        public void TearDownMainPageTestFixture()
+        {
+            _driver.Quit();
         }
     }
 }

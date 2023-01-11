@@ -16,6 +16,7 @@ using TestSuite.PageObjects.VirtualUniveristy;
 namespace TestSuite.TestsSuite
 {
     using static SetUpTestsConfiguration;
+    
     [TestFixture]
     public class VirtualUniversityTests
     {
