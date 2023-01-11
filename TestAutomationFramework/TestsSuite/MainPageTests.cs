@@ -134,8 +134,8 @@ namespace TestSuite.TestsSuite
             _chatBot.SwitchToChatBotFrame();
             _chatBot.CheckWelcomeMessage();
             _chatBot.ClickChatBotNoButton();
-            _chatBot.SendMessage("IncorrectEmailFormat");
             _chatBot.CheckDeclinedContactMessage();
+            _chatBot.SendMessage("IncorrectEmailFormat");
             _chatBot.CheckWrongEmailFormatInformation();
         }
 

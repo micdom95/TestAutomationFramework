@@ -2,6 +2,7 @@
 using AutomationLogic.Common.Extensions;
 using FluentAssertions;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -111,6 +112,8 @@ namespace PageObjects.Functionalities
         public void EnterTextToTextArea(string message)
         {
             ChatBotTextArea.Displayed.Should().BeTrue();
+            Actions actions = new Actions(_driver);
+            actions.MoveToElement(ChatBotTextArea).Click();
             ChatBotTextArea.SendKeys(message);
         }
 
