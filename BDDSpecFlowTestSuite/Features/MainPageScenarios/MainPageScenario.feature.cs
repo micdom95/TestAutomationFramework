@@ -116,12 +116,6 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 8
- testRunner.Given("Cookies are accepted by button clicking", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 9
- testRunner.And("Notifications are agreed by button clicking", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 10
  testRunner.Then("I can see correct default Polish translation on Main Panel", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -130,15 +124,16 @@ this.FeatureBackground();
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Search Engine look for phrase and display label about results")]
-        [NUnit.Framework.TestCaseAttribute("TestPhrase", null)]
-        [NUnit.Framework.TestCaseAttribute("1234567890", null)]
-        public virtual void SearchEngineLookForPhraseAndDisplayLabelAboutResults(string typedPhrases, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("TestPhrase", "Polish", null)]
+        [NUnit.Framework.TestCaseAttribute("1234567890", "Polish", null)]
+        public virtual void SearchEngineLookForPhraseAndDisplayLabelAboutResults(string typedPhrases, string languages, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("TypedPhrases", typedPhrases);
+            argumentsOfScenario.Add("Languages", languages);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Search Engine look for phrase and display label about results", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 12
+#line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -161,16 +156,11 @@ this.ScenarioInitialize(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
-#line 13
- testRunner.Given("Cookies are accepted by button clicking", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 11
+ testRunner.When(string.Format("I typed phrase {0} in Search Engine and click search button with selected {1} pag" +
+                            "e language", typedPhrases, languages), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 14
- testRunner.And("Notifications are agreed by button clicking", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 15
- testRunner.When(string.Format("I typed phrase {0} in Search Engine and click search button", typedPhrases), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 16
+#line 12
  testRunner.Then(string.Format("I can see label with searched phrase {0}", typedPhrases), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

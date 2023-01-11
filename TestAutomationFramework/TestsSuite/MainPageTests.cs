@@ -21,7 +21,6 @@ using TestSuite.PageObjects.VirtualUniveristy;
 namespace TestSuite.TestsSuite
 {
     [TestFixture]
-    [Ignore("Ignore because Assembly Tests")]
     public class MainPageTests
     {
         [Test]

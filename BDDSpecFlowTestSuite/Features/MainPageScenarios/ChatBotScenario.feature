@@ -62,3 +62,6 @@ Scenario: ChatBot received confirmation message from user and redirect user to V
 Scenario: ChatBot received 'No' answer from user
 	When I click ChatBot button
 	And I switch to ChatBot Frame
+	Then I can see ChatBot Welcome Message
+	When I click ChatBot No Button
+	Then I can see Chatbot Suggested Contact Message

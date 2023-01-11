@@ -50,6 +50,12 @@ namespace BDDSpecFlowTestSuite.Steps
             _chatBot.ClickChatBotYesButton();
         }
 
+        [When(@"I click ChatBot No Button")]
+        public void ClickChatBotNoButton()
+        {
+            _chatBot.ClickChatBotNoButton();
+        }
+
         [When(@"I click Virtual University Category button")]
         public void ClickVirtualUniversityCategoryButton()
         {
@@ -109,5 +115,12 @@ namespace BDDSpecFlowTestSuite.Steps
         {
             _chatBot.CheckRedirectToVirtualUniversityMessage();
         }
+
+        [Then(@"I can see Chatbot Suggested Contact Message")]
+        public void AssertChatbotSuggestedContactMessage()
+        {
+            _chatBot.CheckDeclinedContactMessage();
+        }
+
     }
 }

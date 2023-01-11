@@ -70,6 +70,7 @@ namespace TestSuite.PageObjects.MainPage
         public void SearchTextInSearchEngine(string textToSearch, Languages languages)
         {
             ClickSearchEngineButton();
+            WaitForActions.WaitUntilElementVisible(_driver, By.XPath("//div[contains(@class,'header-container')]//input[contains(@data-name,'gsearch')]"));
             EnterTextToSearchEngine(textToSearch);
             ClickSearchEngineButton();
             string formatedText = textToSearch.Replace(" ", "+");

@@ -1,4 +1,5 @@
-﻿using PageObjects.Functionalities;
+﻿using OpenQA.Selenium;
+using PageObjects.Functionalities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +14,15 @@ namespace BDDSpecFlowTestSuite.Steps
     [Binding]
     public class MainPageSteps
     {
+        IWebDriver _driver;
         MainPageActions _mainPageActions;
         ChatBot _chatBot;
 
-        public MainPageSteps(MainPageActions mainPageActions, ChatBot chatBot)
+        public MainPageSteps(IWebDriver driver)
         {
-            _mainPageActions = mainPageActions;
-            _chatBot = chatBot;
+            _driver = driver;
+            _mainPageActions = new MainPageActions(_driver);
+            _chatBot = new ChatBot(_driver);
         }
 
         [Given(@"Opened WSB Academy Main Page")]
@@ -29,10 +32,11 @@ namespace BDDSpecFlowTestSuite.Steps
             _mainPageActions.NavigateToWSBMainPage();
         }
 
-        [When(@"I typed phrase (.*) in Search Engine and click search button")]
-        public void TypedPhraseInSearchEngineAndClickSearchButton(string phrase)
+        [When(@"I typed phrase (.*) in Search Engine and click search button with selected (.*) page language")]
+        public void TypedPhraseInSearchEngineAndClickSearchButton(string phrase, string language)
         {
-            _mainPageActions.EnterTextToSearchEngine(phrase);
+            Languages languageEnum = (Languages)Enum.Parse(typeof(Languages), language);
+            _mainPageActions.SearchTextInSearchEngine(phrase, languageEnum);
         }
 
         [Then(@"I can see correct default (.*) translation on Main Panel")]

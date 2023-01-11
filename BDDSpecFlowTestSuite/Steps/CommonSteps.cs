@@ -1,5 +1,6 @@
 ﻿using AutomationLogic.Handlers;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +17,14 @@ namespace BDDSpecFlowTestSuite.Steps
         IWebDriver _driver;
         CookiesHandler _cookiesHandler;
         CommonElementsActions _commonElementsActions;
+        ChromeOptions _chromeOptions;
 
-        public CommonSteps(IWebDriver driver, CommonElementsActions commonElementsActions, CookiesHandler cookiesHandler)
+        public CommonSteps(IWebDriver driver, CommonElementsActions commonElementsActions, CookiesHandler cookiesHandler, ChromeOptions chromeOptions)
         {
             _driver = driver;
             _cookiesHandler = cookiesHandler;
             _commonElementsActions = commonElementsActions;
+            _chromeOptions = chromeOptions;
         }
 
         [Given(@"Page is refreshed")]
