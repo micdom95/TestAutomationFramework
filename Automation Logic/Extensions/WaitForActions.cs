@@ -87,5 +87,18 @@ namespace AutomationLogic.Common.Extensions
                 throw;
             }
         }
+
+        public static void CheckIfAlertIsDisplayedAndAccept(this IWebDriver driver, int timeout = 10)
+        {
+            try
+            {
+                IAlert alert = new WebDriverWait(driver, TimeSpan.FromSeconds(timeout)).Until(ExpectedConditions.AlertIsPresent());
+                driver.SwitchTo().Alert().Accept();
+            }
+            catch
+            {
+
+            }
+        }
     }
 }

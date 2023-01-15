@@ -1,4 +1,5 @@
 ﻿using Automation_Logic.Setup.SecretsConfiguration;
+using AutomationLogic.Common.Extensions;
 using FluentAssertions;
 using OpenQA.Selenium;
 using System;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestSuite.Enums;
+using TestSuite.Model;
 using TestSuite.Translations;
 using TestSuite.Translations.Assertions;
 
@@ -24,6 +26,7 @@ namespace TestSuite.PageObjects.VirtualUniveristy
 
         public void CheckDefaultUrlAddressAfterLogIn()
         {
+            WaitForActions.CheckIfAlertIsDisplayedAndAccept(_driver);
             _driver.Url.Should().Be(SecretsConfiguration.Instance.DefaultLogInUrl);
         }
 
@@ -42,8 +45,16 @@ namespace TestSuite.PageObjects.VirtualUniveristy
         public void CheckAnnouncementsPageTranslations(Languages language)
         {
             AccouncementsTitleLabel.CheckIfTextCoitainsTranslation("AccouncementsTitleLabel", _virtualUniversityUserPageTranslations, language);
-            ClearFilterButton.CheckIfTextCoitainsTranslation("ClearFilterButton", _virtualUniversityUserPageTranslations, language);
-            FilterButton.CheckIfTextCoitainsTranslation("FilterButton", _virtualUniversityUserPageTranslations, language);
+            if (language.Equals(Languages.Polish))
+            {
+                ClearFilterButton.GetAttribute("value").Should().Be("Wyczyść");
+                FilterButton.GetAttribute("value").Should().Be("Filtruj");
+            }
+            else if(language.Equals(Languages.English))
+            {
+                ClearFilterButton.GetAttribute("value").Should().Be("Clear");
+                FilterButton.GetAttribute("value").Should().Be("Filter");
+            }
         }
     }
 }

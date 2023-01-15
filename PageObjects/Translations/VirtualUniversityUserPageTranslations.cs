@@ -15,9 +15,9 @@ namespace TestSuite.Translations
             get
             {
                 List<TranslationModel> translations = new List<TranslationModel>();
-                translations.Add(new TranslationModel { TranslationKey = "AccouncementsTitleLabel", PolishText = "Wiadomości", EnglishText = "Messages" });
+                translations.Add(new TranslationModel { TranslationKey = "AccouncementsTitleLabel", PolishText = "WIADOMOŚCI", EnglishText = "Messages" });
                 translations.Add(new TranslationModel { TranslationKey = "ClearFilterButton", PolishText = "Wyczyść", EnglishText = "Clear" });
-                translations.Add(new TranslationModel { TranslationKey = " FilterButton", PolishText = "Filtruj", EnglishText = "Filter" });
+                translations.Add(new TranslationModel { TranslationKey = "FilterButton", PolishText = "Filtruj", EnglishText = "Filter" });
                 
                 return translations;
             }
