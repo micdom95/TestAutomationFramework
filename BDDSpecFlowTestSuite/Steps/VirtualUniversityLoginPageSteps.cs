@@ -39,9 +39,9 @@ namespace BDDSpecFlowTestSuite.Steps
         }
 
         [When(@"I enter text (.*) to Password field")]
-        public void EnterTextToPasswordField()
+        public void EnterTextToPasswordField(string password)
         {
-            _virtualUniversityLoginPageActions.CheckWrongPasswordErrorMessage();
+            _virtualUniversityLoginPageActions.EnterTextToPasswordTextbox(password);
         }
 
         [When(@"I enter correct Password to Password field")]

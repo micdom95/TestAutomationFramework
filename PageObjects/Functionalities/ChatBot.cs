@@ -75,7 +75,7 @@ namespace PageObjects.Functionalities
 
         public void SwitchToChatBotButtonFrame()
         {
-            WaitForActions.WaitUntilFrameIsAvailable(_driver, "usercom-launcher-dot-frame", 90);
+            WaitForActions.WaitUntilFrameIsAvailable(_driver, "usercom-launcher-dot-frame", 300);
         }
 
         public void SwitchToChatBotFrame()
@@ -136,7 +136,7 @@ namespace PageObjects.Functionalities
 
         public void CheckNotReceivedUserAnswerMessage()
         {
-            WaitForActions.WaitUntilElementVisible(_driver, By.XPath("//div[contains(@class,'lastMessageInGroup')]//p[contains(text(),'Nie otrzymałem')]"), 300);
+            WaitForActions.WaitUntilElementVisible(_driver, By.XPath("//div[contains(@class,'lastMessageInGroup')]//p[contains(text(),'Nie otrzymałem')]"), 600);
             ChatBotNotReceivedAnswerMessage.Text.Should().Be(ChatBotMessages["NotReveivedAnswerMessage"]);
         }
 

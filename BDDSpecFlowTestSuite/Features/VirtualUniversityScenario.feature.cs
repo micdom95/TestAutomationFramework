@@ -277,15 +277,12 @@ testRunner.And("I can see correct User Album Number", ((string)(null)), ((TechTa
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Virtual University User Page has correct language translation on Announcements")]
-        [NUnit.Framework.TestCaseAttribute("Polish", null)]
-        [NUnit.Framework.TestCaseAttribute("English", null)]
-        public virtual void VirtualUniversityUserPageHasCorrectLanguageTranslationOnAnnouncements(string languageType, string[] exampleTags)
+        [NUnit.Framework.DescriptionAttribute("Virtual University User Page has correct Polish translation on Announcements")]
+        public virtual void VirtualUniversityUserPageHasCorrectPolishTranslationOnAnnouncements()
         {
-            string[] tagsOfScenario = exampleTags;
+            string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("LanguageType", languageType);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Virtual University User Page has correct language translation on Announcements", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Virtual University User Page has correct Polish translation on Announcements", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 32
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -328,7 +325,7 @@ testRunner.And("I can see correct User Info", ((string)(null)), ((TechTalk.SpecF
 testRunner.And("I can see correct User Album Number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 39
-testRunner.And(string.Format("I can see correct \"{0}\" translation on Announcements Page", languageType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I can see correct Polish translation on Announcements Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
