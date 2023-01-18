@@ -23,9 +23,15 @@ namespace TestSuite.PageObjects.VirtualUniveristy
 
         public IWebElement AccouncementsTitleLabel => _driver.FindElement(By.XPath("//span[contains(@id,'RightContentPlaceHolder_lblTitle')]"));
 
-        public IWebElement LanguageOptionsDropdown => _driver.FindElement(By.XPath("//div[@class='pcg-languages-list pcg-dropdown']"));
+        public IWebElement LanguageOptionsDropdown => _driver.FindElement(By.XPath("//div[contains(@class,'pcg-languages-list pcg-dropdown')]"));
 
-        public IList<IWebElement> LanguageOptions => LanguageOptionsDropdown.FindElements(By.XPath("/div[contains(@class,'pcg-lang-option')]/a/div[@class='language-name']"));
+        public IList<IWebElement> LanguageOptions => LanguageOptionsDropdown.FindElements(By.XPath("//div[@class='pcg-languages-list pcg-dropdown show']/div[contains(@class,'pcg-lang-option')]/a/div[@class='language-name']"));
+
+        public IWebElement SemesterNumerOptionsDropdown => _driver.FindElement(By.XPath("//label[contains(@id,'lblSemesterNr')]//following-sibling::div"));
+
+        public IWebElement SemesterNumerOptions => SemesterNumerOptionsDropdown.FindElement(By.XPath("//label[contains(@id,'lblSemesterNr')]//following-sibling::div//select"));
+
+        public IWebElement AcademicYearAndSemesterNumerLabel => _driver.FindElement(By.XPath("//table[@class='rgMasterTable']//tbody/tr//span[@id='ctl00_ctl00_ContentPlaceHolder_RightContentPlaceHolder_rgData_ctl00_ctl04_lblHeader']"));
 
         public IWebElement ClearFilterButton => _driver.FindElement(By.XPath("//input[contains(@id,'RightContentPlaceHolder_btnClear')]"));
 

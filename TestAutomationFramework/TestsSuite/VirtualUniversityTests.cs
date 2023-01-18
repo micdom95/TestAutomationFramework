@@ -104,6 +104,30 @@ namespace TestSuite.TestsSuite
         }
 
         [Test]
+        [Category("User Page - Selecting Semester Numer - Semester Numer")]
+        [Description("This Test will start from Logging Page because we can't do HTTP Request with authorization")]
+        [TestCase("1", "2019/2020")]
+        [TestCase("2", "2019/2020")]
+        [TestCase("7", "2022/2023")]
+        [Parallelizable]
+        public void VirtualUniversityUserPage_SelectedSemesterNumerAndAcademicYearWithPolishLanguage_CorrectDataIsDisplayed(string semesterNumer, string academicYear)
+        {
+            var virtualUniversityUserPageActions = new VirtualUniversityUserPageActions(_driver);
+
+            _virtualUniversityLoginPageActions.NavigateToVirtualUniversityPage();
+            _virtualUniversityLoginPageActions.EnterTextToUsernameTextbox(SecretsConfiguration.Instance.UserNameLoginEmail);
+            _virtualUniversityLoginPageActions.EnterTextToPasswordTextbox(SecretsConfiguration.Instance.UserLoginPassword);
+            _virtualUniversityLoginPageActions.ClickLoginButton();
+            virtualUniversityUserPageActions.CheckDefaultUrlAddressAfterLogIn();
+            virtualUniversityUserPageActions.CheckUserInfoLabel(SecretsConfiguration.Instance.UsernameInfo);
+            virtualUniversityUserPageActions.CheckUserAlbumNumberUserInfoLabel(SecretsConfiguration.Instance.UserAlbumNumber);
+            virtualUniversityUserPageActions.SwitchSemesterNumer(semesterNumer);
+            virtualUniversityUserPageActions.ClickFilterButton();
+            virtualUniversityUserPageActions.CheckSelectedSemesterNumberOnAnnouncemetsHeader(semesterNumer, Languages.Polish);
+            virtualUniversityUserPageActions.CheckSelectedAcademicYearOnAnnouncemetsHeader(academicYear, Languages.Polish);
+        }
+
+        [Test]
         [Category("Translations - User Page - English Language")]
         [Description("This Test will start from Logging Page because we can't do HTTP Request with authorization")]
         [Parallelizable]

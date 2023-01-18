@@ -25,6 +25,12 @@ namespace TestSuite.PageObjects.VirtualUniveristy
             _driver = driver;
         }
 
+        public void ClickFilterButton()
+        {
+            FilterButton.Displayed.Should().BeTrue();
+            FilterButton.Click();
+        }
+
         public void CheckDefaultUrlAddressAfterLogIn()
         {
             WaitForActions.CheckIfAlertIsDisplayedAndAccept(_driver);
@@ -43,8 +49,41 @@ namespace TestSuite.PageObjects.VirtualUniveristy
             UserAlbumUserInfoLabel.Text.Should().Be(userAlbumNumber);
         }
 
+        public void SwitchSemesterNumer(string semesterNumer)
+        {
+            SemesterNumerOptionsDropdown.Displayed.Should().BeTrue();
+            SemesterNumerOptionsDropdown.Click();
+            var dropdownHandler = new DropdownHandler(_driver, SemesterNumerOptions);
+            dropdownHandler.SelectElementByValue(semesterNumer);
+        }
+
+        public void CheckSelectedSemesterNumberOnAnnouncemetsHeader(string semesterNumer, Languages language)
+        {
+            if (language.Equals(Languages.Polish))
+            {
+                AcademicYearAndSemesterNumerLabel.Text.Should().Contain($"semestr {semesterNumer}");
+            }
+            else if (language.Equals(Languages.English))
+            {
+                AcademicYearAndSemesterNumerLabel.Text.Should().BeNull();
+            }
+        }
+
+        public void CheckSelectedAcademicYearOnAnnouncemetsHeader(string academicYear, Languages language)
+        {
+            if (language.Equals(Languages.Polish))
+            {
+                AcademicYearAndSemesterNumerLabel.Text.Should().Contain($"Rok akademicki {academicYear}");
+            }
+            else if (language.Equals(Languages.English))
+            {
+                AcademicYearAndSemesterNumerLabel.Text.Should().BeNull();
+            }
+        }
+
         public void SwitchLanguageOptionsByText(Languages language)
         {
+            //TODO - Different navigate on Dropdown without Select Tab. Action class could be used.
             LanguageOptionsDropdown.Displayed.Should().BeTrue();
             LanguageOptionsDropdown.Click();
             var dropdownHandler = new DropdownHandler(_driver, LanguageOptionsDropdown);
