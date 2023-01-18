@@ -103,6 +103,25 @@ namespace TestSuite.TestsSuite
             virtualUniversityUserPageActions.CheckAnnouncementsPageTranslations(Languages.Polish);
         }
 
+        [Test]
+        [Category("Translations - User Page - English Language")]
+        [Description("This Test will start from Logging Page because we can't do HTTP Request with authorization")]
+        [Parallelizable]
+        public void VirtualUniversityUserPageTranslation_EnglishTranslations_CorrectTranslation()
+        {
+            var virtualUniversityUserPageActions = new VirtualUniversityUserPageActions(_driver);
+
+            _virtualUniversityLoginPageActions.NavigateToVirtualUniversityPage();
+            _virtualUniversityLoginPageActions.EnterTextToUsernameTextbox(SecretsConfiguration.Instance.UserNameLoginEmail);
+            _virtualUniversityLoginPageActions.EnterTextToPasswordTextbox(SecretsConfiguration.Instance.UserLoginPassword);
+            _virtualUniversityLoginPageActions.ClickLoginButton();
+            virtualUniversityUserPageActions.CheckDefaultUrlAddressAfterLogIn();
+            virtualUniversityUserPageActions.CheckUserInfoLabel(SecretsConfiguration.Instance.UsernameInfo);
+            virtualUniversityUserPageActions.CheckUserAlbumNumberUserInfoLabel(SecretsConfiguration.Instance.UserAlbumNumber);
+            virtualUniversityUserPageActions.SwitchLanguageOptionsByText(Languages.English);
+            virtualUniversityUserPageActions.CheckAnnouncementsPageTranslations(Languages.English);
+        }
+
         [TearDown]
         public void TearDownVirtualUniversityTestFixture()
         {

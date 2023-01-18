@@ -106,6 +106,8 @@ namespace PageObjects.Functionalities
         {
             ChatBotRedirectToVirtualUniversityLink.Displayed.Should().BeTrue();
             ChatBotRedirectToVirtualUniversityLink.Click();
+            IReadOnlyCollection<string> tabs = _driver.WindowHandles;
+            _driver.SwitchTo().Window(tabs.ElementAt(1));
             WaitForActions.WaitForPageIsLoaded(_driver);
         }
 

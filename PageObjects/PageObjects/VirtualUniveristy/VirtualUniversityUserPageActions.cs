@@ -1,5 +1,6 @@
 ﻿using Automation_Logic.Setup.SecretsConfiguration;
 using AutomationLogic.Common.Extensions;
+using AutomationLogic.Handlers;
 using FluentAssertions;
 using OpenQA.Selenium;
 using System;
@@ -40,6 +41,23 @@ namespace TestSuite.PageObjects.VirtualUniveristy
         {
             UserAlbumUserInfoLabel.Displayed.Should().BeTrue();
             UserAlbumUserInfoLabel.Text.Should().Be(userAlbumNumber);
+        }
+
+        public void SwitchLanguageOptionsByText(Languages language)
+        {
+            LanguageOptionsDropdown.Displayed.Should().BeTrue();
+            LanguageOptionsDropdown.Click();
+            var dropdownHandler = new DropdownHandler(_driver, LanguageOptionsDropdown);
+            string dropdownOption = "";
+            if (language.Equals(Languages.Polish))
+            {
+                dropdownOption = "PL";
+            }
+            else if (language.Equals(Languages.English))
+            {
+                dropdownOption = "EN";
+            }
+            dropdownHandler.SelectElementByText(dropdownOption);
         }
 
         public void CheckAnnouncementsPageTranslations(Languages language)
