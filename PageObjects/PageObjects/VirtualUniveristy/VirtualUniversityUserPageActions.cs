@@ -69,11 +69,11 @@ namespace TestSuite.PageObjects.VirtualUniveristy
             }
         }
 
-        public void CheckSelectedAcademicYearOnAnnouncemetsHeader(string academicYear, Languages language)
+        public void CheckSelectedAcademicYearOnAnnouncemetsHeader(string startAcademicYear, string endAcademicYear, Languages language)
         {
             if (language.Equals(Languages.Polish))
             {
-                AcademicYearAndSemesterNumerLabel.Text.Should().Contain($"Rok akademicki {academicYear}");
+                AcademicYearAndSemesterNumerLabel.Text.Should().Contain($"Rok akademicki {startAcademicYear}/{endAcademicYear}");
             }
             else if (language.Equals(Languages.English))
             {
@@ -81,7 +81,7 @@ namespace TestSuite.PageObjects.VirtualUniveristy
             }
         }
 
-        public void SwitchLanguageOptionsByText(Languages language)
+        public void SwitchLanguageOptions(Languages language)
         {
             LanguageOptionsDropdown.Displayed.Should().BeTrue();
             LanguageOptionsDropdown.Click();

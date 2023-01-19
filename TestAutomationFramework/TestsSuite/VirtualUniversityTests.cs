@@ -106,11 +106,11 @@ namespace TestSuite.TestsSuite
         [Test]
         [Category("User Page - Selecting Semester Numer - Semester Numer")]
         [Description("This Test will start from Logging Page because we can't do HTTP Request with authorization")]
-        [TestCase("1", "2019/2020")]
-        [TestCase("2", "2019/2020")]
-        [TestCase("7", "2022/2023")]
+        [TestCase("1", "2019", "2020")]
+        [TestCase("2", "2019", "2020")]
+        [TestCase("7", "2022", "2023")]
         [Parallelizable]
-        public void VirtualUniversityUserPage_SelectedSemesterNumerAndAcademicYearWithPolishLanguage_CorrectDataIsDisplayed(string semesterNumer, string academicYear)
+        public void VirtualUniversityUserPage_SelectedSemesterNumerAndAcademicYearWithPolishLanguage_CorrectDataIsDisplayed(string semesterNumer, string startAcademicYear, string endAcademicYear)
         {
             var virtualUniversityUserPageActions = new VirtualUniversityUserPageActions(_driver);
 
@@ -124,7 +124,7 @@ namespace TestSuite.TestsSuite
             virtualUniversityUserPageActions.SwitchSemesterNumer(semesterNumer);
             virtualUniversityUserPageActions.ClickFilterButton();
             virtualUniversityUserPageActions.CheckSelectedSemesterNumberOnAnnouncemetsHeader(semesterNumer, Languages.Polish);
-            virtualUniversityUserPageActions.CheckSelectedAcademicYearOnAnnouncemetsHeader(academicYear, Languages.Polish);
+            virtualUniversityUserPageActions.CheckSelectedAcademicYearOnAnnouncemetsHeader(startAcademicYear, endAcademicYear, Languages.Polish);
         }
 
         [Test]
@@ -142,7 +142,7 @@ namespace TestSuite.TestsSuite
             virtualUniversityUserPageActions.CheckDefaultUrlAddressAfterLogIn();
             virtualUniversityUserPageActions.CheckUserInfoLabel(SecretsConfiguration.Instance.UsernameInfo);
             virtualUniversityUserPageActions.CheckUserAlbumNumberUserInfoLabel(SecretsConfiguration.Instance.UserAlbumNumber);
-            virtualUniversityUserPageActions.SwitchLanguageOptionsByText(Languages.English);
+            virtualUniversityUserPageActions.SwitchLanguageOptions(Languages.English);
             virtualUniversityUserPageActions.CheckAnnouncementsPageTranslations(Languages.English);
         }
 
