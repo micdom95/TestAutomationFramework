@@ -277,12 +277,21 @@ testRunner.And("I can see correct User Album Number", ((string)(null)), ((TechTa
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Virtual University User Page has correct Polish translation on Announcements")]
-        public virtual void VirtualUniversityUserPageHasCorrectPolishTranslationOnAnnouncements()
+        [NUnit.Framework.DescriptionAttribute("Selected semester numer with displayed correct Academic start year and end year a" +
+            "nd semester numer data")]
+        [NUnit.Framework.TestCaseAttribute("1", "2019", "2020", "Polish", null)]
+        [NUnit.Framework.TestCaseAttribute("2", "2019", "2020", "Polish", null)]
+        [NUnit.Framework.TestCaseAttribute("7", "2022", "2023", "Polish", null)]
+        public virtual void SelectedSemesterNumerWithDisplayedCorrectAcademicStartYearAndEndYearAndSemesterNumerData(string semesterNumer, string startAcademicYear, string endAdacemicYear, string language, string[] exampleTags)
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Virtual University User Page has correct Polish translation on Announcements", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            argumentsOfScenario.Add("SemesterNumer", semesterNumer);
+            argumentsOfScenario.Add("StartAcademicYear", startAcademicYear);
+            argumentsOfScenario.Add("EndAdacemicYear", endAdacemicYear);
+            argumentsOfScenario.Add("Language", language);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Selected semester numer with displayed correct Academic start year and end year a" +
+                    "nd semester numer data", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 32
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -325,7 +334,131 @@ testRunner.And("I can see correct User Info", ((string)(null)), ((TechTalk.SpecF
 testRunner.And("I can see correct User Album Number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 39
+testRunner.When(string.Format("I select semester numer {0} in dropdown", semesterNumer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 40
+testRunner.And("I click filter button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 41
+testRunner.Then(string.Format("I can see correct semester numer {0} on Announcements Header with {1} translation" +
+                            "", semesterNumer, language), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 42
+testRunner.And(string.Format("I can see correct Academic start year {0} and Academic end year {1} on Announceme" +
+                            "nts Header with {2} translation", startAcademicYear, endAdacemicYear, language), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Virtual University User Page has correct Polish translation on Announcements")]
+        public virtual void VirtualUniversityUserPageHasCorrectPolishTranslationOnAnnouncements()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Virtual University User Page has correct Polish translation on Announcements", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 51
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 3
+this.FeatureBackground();
+#line hidden
+#line 52
+testRunner.When("I enter correct Username to Username field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 53
+testRunner.And("I enter correct Password to Password field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 54
+testRunner.And("I click login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 55
+testRunner.Then("I can see default URL Address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 56
+testRunner.And("I can see correct User Info", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 57
+testRunner.And("I can see correct User Album Number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 58
 testRunner.And("I can see correct Polish translation on Announcements Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Virtual University User Page has correct English translation on Announcements")]
+        public virtual void VirtualUniversityUserPageHasCorrectEnglishTranslationOnAnnouncements()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Virtual University User Page has correct English translation on Announcements", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 60
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 3
+this.FeatureBackground();
+#line hidden
+#line 61
+testRunner.When("I enter correct Username to Username field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 62
+testRunner.And("I enter correct Password to Password field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 63
+testRunner.And("I click login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 64
+testRunner.Then("I can see default URL Address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 65
+testRunner.And("I can see correct User Info", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 66
+testRunner.And("I can see correct User Album Number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 67
+testRunner.When("I switch language options dropdown to English", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 68
+testRunner.Then("I can see correct English translation on Announcements Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -69,7 +69,7 @@ namespace TestSuite.TestsSuite
         }
 
         [Test]
-        [Category("Login Page")]
+        [Category("Login Page - User Page")]
         [Parallelizable]
         public void VirtualUniversityLogin_LoginWithCorrectCredentials_CorrectLogging()
         {
@@ -104,7 +104,7 @@ namespace TestSuite.TestsSuite
         }
 
         [Test]
-        [Category("User Page - Selecting Semester Numer - Semester Numer")]
+        [Category("User Page - Selecting Semester Numer - Semester Numer with correct data")]
         [Description("This Test will start from Logging Page because we can't do HTTP Request with authorization")]
         [TestCase("1", "2019", "2020")]
         [TestCase("2", "2019", "2020")]

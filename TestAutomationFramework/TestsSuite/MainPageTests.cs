@@ -46,7 +46,7 @@ namespace TestSuite.TestsSuite
         [Test]
         [Category("Smoke Test")]
         [Parallelizable]
-        public void WSBMainPage_OpeningWSBMainPage_WSBMainPageOpenedProperly()
+        public void WSBMainPage_OpeningWSBMainPage_WSBMainPageOpenedProperlyWithDefaultTranslation()
         {
             _mainPageActions.NavigateToWSBMainPage();
             _commonElementsActions.ClickAcceptCookieButton();

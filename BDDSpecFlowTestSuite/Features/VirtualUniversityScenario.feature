@@ -29,6 +29,25 @@ Then I can see default URL Address
 And I can see correct User Info
 And I can see correct User Album Number
 
+Scenario: Selected semester numer with displayed correct Academic start year and end year and semester numer data
+When I enter correct Username to Username field
+And I enter correct Password to Password field
+And I click login button
+Then I can see default URL Address
+And I can see correct User Info
+And I can see correct User Album Number
+When I select semester numer <SemesterNumer> in dropdown
+And I click filter button
+Then I can see correct semester numer <SemesterNumer> on Announcements Header with <Language> translation
+And I can see correct Academic start year <StartAcademicYear> and Academic end year <EndAdacemicYear> on Announcements Header with <Language> translation
+
+Examples: 
+| SemesterNumer | StartAcademicYear | EndAdacemicYear | Language |
+| 1             | 2019              | 2020            | Polish   |
+| 2             | 2019              | 2020            | Polish   |
+| 7             | 2022              | 2023            | Polish   |
+
+
 Scenario: Virtual University User Page has correct Polish translation on Announcements
 When I enter correct Username to Username field
 And I enter correct Password to Password field
@@ -37,4 +56,14 @@ Then I can see default URL Address
 And I can see correct User Info
 And I can see correct User Album Number
 And I can see correct Polish translation on Announcements Page
+
+Scenario: Virtual University User Page has correct English translation on Announcements
+When I enter correct Username to Username field
+And I enter correct Password to Password field
+And I click login button
+Then I can see default URL Address
+And I can see correct User Info
+And I can see correct User Album Number
+When I switch language options dropdown to English
+Then I can see correct English translation on Announcements Page
 
