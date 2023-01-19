@@ -83,20 +83,17 @@ namespace TestSuite.PageObjects.VirtualUniveristy
 
         public void SwitchLanguageOptionsByText(Languages language)
         {
-            //TODO - Different navigate on Dropdown without Select Tab. Action class could be used.
             LanguageOptionsDropdown.Displayed.Should().BeTrue();
             LanguageOptionsDropdown.Click();
-            var dropdownHandler = new DropdownHandler(_driver, LanguageOptionsDropdown);
-            string dropdownOption = "";
+
             if (language.Equals(Languages.Polish))
             {
-                dropdownOption = "PL";
+                LanguageOptions.FirstOrDefault(languageOption => languageOption.Text == "PL").Click();
             }
             else if (language.Equals(Languages.English))
             {
-                dropdownOption = "EN";
+                LanguageOptions.FirstOrDefault(languageOption => languageOption.Text == "EN").Click();
             }
-            dropdownHandler.SelectElementByText(dropdownOption);
         }
 
         public void CheckAnnouncementsPageTranslations(Languages language)
