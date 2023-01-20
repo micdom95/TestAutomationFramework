@@ -40,6 +40,5 @@ namespace BDDSpecFlowTestSuite.Hooks
             _cookiesHandler.DeleteAllCookies();
             _driver.Quit();
         }
-
     }
 }

@@ -15,7 +15,7 @@ namespace TestSuite.PageObjects.VirtualUniveristy
         {
             _driver = driver;
         }
-        
+
         #region Announcements
         public IWebElement UsernameUserInfoLabel => _driver.FindElement(By.XPath("//span[contains(@class,'nav-top2-user-info-content')]//span[contains(@class,'nav-top2 nav-top2-name')]"));
 
@@ -36,6 +36,8 @@ namespace TestSuite.PageObjects.VirtualUniveristy
         public IWebElement ClearFilterButton => _driver.FindElement(By.XPath("//input[contains(@id,'RightContentPlaceHolder_btnClear')]"));
 
         public IWebElement FilterButton => _driver.FindElement(By.XPath("//input[contains(@id,'RightContentPlaceHolder_btnFilter')]"));
+
+        public IWebElement BluredLoadingScreen => _driver.FindElement(By.XPath("//div[@id='ctl00_ctl00_ContentPlaceHolder_RightContentPlaceHolder_appLoadingPanelctl00_ctl00_ContentPlaceHolder_RightContentPlaceHolder_ctl00']"));
         #endregion
     }
 }

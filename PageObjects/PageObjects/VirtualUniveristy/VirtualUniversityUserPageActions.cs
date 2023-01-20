@@ -3,10 +3,14 @@ using AutomationLogic.Common.Extensions;
 using AutomationLogic.Handlers;
 using FluentAssertions;
 using OpenQA.Selenium;
+using PageObjects.Extensions;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using TestSuite.Enums;
 using TestSuite.Model;
@@ -28,12 +32,27 @@ namespace TestSuite.PageObjects.VirtualUniveristy
         public void ClickFilterButton()
         {
             FilterButton.Displayed.Should().BeTrue();
-            FilterButton.Click();
+            IJavaScriptExecutor javaScriptExecutor = ((IJavaScriptExecutor)_driver);
+            javaScriptExecutor.ExecuteScript("arguments[0].click();", FilterButton);
+            CustomVirtualUniversityWaiter.WaitUntilElementVisible(_driver, By.XPath("//div[@id='ctl00_ctl00_ContentPlaceHolder_RightContentPlaceHolder_appLoadingPanelctl00_ctl00_ContentPlaceHolder_RightContentPlaceHolder_ctl00']"));
+            CustomVirtualUniversityWaiter.WaitElementDisspear(_driver, By.XPath("//div[@id='ctl00_ctl00_ContentPlaceHolder_RightContentPlaceHolder_appLoadingPanelctl00_ctl00_ContentPlaceHolder_RightContentPlaceHolder_ctl00']"));
+            //WaitForActions.WaitUntilElementVisible(_driver, By.XPath("//div[@id='ctl00_ctl00_ContentPlaceHolder_RightContentPlaceHolder_appLoadingPanelctl00_ctl00_ContentPlaceHolder_RightContentPlaceHolder_ctl00']"));
+            //WaitForActions.WaitUntilElementDisapear(_driver, By.XPath("//div[@id='ctl00_ctl00_ContentPlaceHolder_RightContentPlaceHolder_appLoadingPanelctl00_ctl00_ContentPlaceHolder_RightContentPlaceHolder_ctl00']"));
+        }
+
+        public void CheckDisplayingAlertAndAcceptIfExist()
+        {
+            WaitForActions.CheckIfAlertIsDisplayedAndAccept(_driver);
+        }
+
+        public void WaitForUserPageIsLoaded()
+        {
+            CheckDisplayingAlertAndAcceptIfExist();
+            WaitForActions.WaitForPageIsLoaded(_driver);
         }
 
         public void CheckDefaultUrlAddressAfterLogIn()
         {
-            WaitForActions.CheckIfAlertIsDisplayedAndAccept(_driver);
             _driver.Url.Should().Be(SecretsConfiguration.Instance.DefaultLogInUrl);
         }
 
@@ -55,6 +74,7 @@ namespace TestSuite.PageObjects.VirtualUniveristy
             SemesterNumerOptionsDropdown.Click();
             var dropdownHandler = new DropdownHandler(_driver, SemesterNumerOptions);
             dropdownHandler.SelectElementByValue(semesterNumer);
+            WaitForActions.WaitUntilElementClickable(_driver, FilterButton);
         }
 
         public void CheckSelectedSemesterNumberOnAnnouncemetsHeader(string semesterNumer, Languages language)

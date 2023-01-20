@@ -32,6 +32,8 @@ Scenario: ChatBot send message without received message from user and receive Em
 	And I switch to ChatBot Frame
 	Then I can see ChatBot Welcome Message
 	And I wait and see ChatBot Message about not received answer from user
+	When I click Email Contact button
+	Then I can see Request for Email Address Message
 	When I enter text IncorrectEmailFormat in ChatBot text field and send
 	Then I can see Message about Email incorrect format
 

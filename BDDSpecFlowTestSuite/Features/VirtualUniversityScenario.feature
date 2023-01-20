@@ -25,6 +25,7 @@ Scenario: Log in to Virtual University with correct UserName and correct Passwor
 When I enter correct Username to Username field
 And I enter correct Password to Password field
 And I click login button
+And I wait for Page is loaded and accept alert if exist
 Then I can see default URL Address
 And I can see correct User Info
 And I can see correct User Album Number
@@ -33,6 +34,7 @@ Scenario: Selected semester numer with displayed correct Academic start year and
 When I enter correct Username to Username field
 And I enter correct Password to Password field
 And I click login button
+And I wait for Page is loaded and accept alert if exist
 Then I can see default URL Address
 And I can see correct User Info
 And I can see correct User Album Number
@@ -52,6 +54,7 @@ Scenario: Virtual University User Page has correct Polish translation on Announc
 When I enter correct Username to Username field
 And I enter correct Password to Password field
 And I click login button
+And I wait for Page is loaded and accept alert if exist
 Then I can see default URL Address
 And I can see correct User Info
 And I can see correct User Album Number
@@ -61,6 +64,7 @@ Scenario: Virtual University User Page has correct English translation on Announ
 When I enter correct Username to Username field
 And I enter correct Password to Password field
 And I click login button
+And I wait for Page is loaded and accept alert if exist
 Then I can see default URL Address
 And I can see correct User Info
 And I can see correct User Album Number

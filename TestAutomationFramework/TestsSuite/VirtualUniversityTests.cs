@@ -1,5 +1,6 @@
 ﻿using Automation_Logic.Setup.DriverSetup;
 using Automation_Logic.Setup.SecretsConfiguration;
+using AutomationLogic.Common.Extensions;
 using AutomationLogic.Setup;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -80,6 +81,7 @@ namespace TestSuite.TestsSuite
             _virtualUniversityLoginPageActions.EnterTextToUsernameTextbox(SecretsConfiguration.Instance.UserNameLoginEmail);
             _virtualUniversityLoginPageActions.EnterTextToPasswordTextbox(SecretsConfiguration.Instance.UserLoginPassword);
             _virtualUniversityLoginPageActions.ClickLoginButton();
+            virtualUniversityUserPageActions.WaitForUserPageIsLoaded();
             virtualUniversityUserPageActions.CheckDefaultUrlAddressAfterLogIn();
             virtualUniversityUserPageActions.CheckUserInfoLabel(SecretsConfiguration.Instance.UsernameInfo);
             virtualUniversityUserPageActions.CheckUserAlbumNumberUserInfoLabel(SecretsConfiguration.Instance.UserAlbumNumber);
@@ -97,6 +99,7 @@ namespace TestSuite.TestsSuite
             _virtualUniversityLoginPageActions.EnterTextToUsernameTextbox(SecretsConfiguration.Instance.UserNameLoginEmail);
             _virtualUniversityLoginPageActions.EnterTextToPasswordTextbox(SecretsConfiguration.Instance.UserLoginPassword);
             _virtualUniversityLoginPageActions.ClickLoginButton();
+            virtualUniversityUserPageActions.WaitForUserPageIsLoaded();
             virtualUniversityUserPageActions.CheckDefaultUrlAddressAfterLogIn();
             virtualUniversityUserPageActions.CheckUserInfoLabel(SecretsConfiguration.Instance.UsernameInfo);
             virtualUniversityUserPageActions.CheckUserAlbumNumberUserInfoLabel(SecretsConfiguration.Instance.UserAlbumNumber);
@@ -118,6 +121,7 @@ namespace TestSuite.TestsSuite
             _virtualUniversityLoginPageActions.EnterTextToUsernameTextbox(SecretsConfiguration.Instance.UserNameLoginEmail);
             _virtualUniversityLoginPageActions.EnterTextToPasswordTextbox(SecretsConfiguration.Instance.UserLoginPassword);
             _virtualUniversityLoginPageActions.ClickLoginButton();
+            virtualUniversityUserPageActions.WaitForUserPageIsLoaded();
             virtualUniversityUserPageActions.CheckDefaultUrlAddressAfterLogIn();
             virtualUniversityUserPageActions.CheckUserInfoLabel(SecretsConfiguration.Instance.UsernameInfo);
             virtualUniversityUserPageActions.CheckUserAlbumNumberUserInfoLabel(SecretsConfiguration.Instance.UserAlbumNumber);
@@ -139,6 +143,7 @@ namespace TestSuite.TestsSuite
             _virtualUniversityLoginPageActions.EnterTextToUsernameTextbox(SecretsConfiguration.Instance.UserNameLoginEmail);
             _virtualUniversityLoginPageActions.EnterTextToPasswordTextbox(SecretsConfiguration.Instance.UserLoginPassword);
             _virtualUniversityLoginPageActions.ClickLoginButton();
+            virtualUniversityUserPageActions.WaitForUserPageIsLoaded();
             virtualUniversityUserPageActions.CheckDefaultUrlAddressAfterLogIn();
             virtualUniversityUserPageActions.CheckUserInfoLabel(SecretsConfiguration.Instance.UsernameInfo);
             virtualUniversityUserPageActions.CheckUserAlbumNumberUserInfoLabel(SecretsConfiguration.Instance.UserAlbumNumber);

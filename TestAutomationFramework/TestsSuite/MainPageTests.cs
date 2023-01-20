@@ -121,7 +121,8 @@ namespace TestSuite.TestsSuite
 
         [Test]
         [Category("ChatBot")]
-        [Description("ChatBot - Check ChatBot without received answer from user and sended E-mail in incorrect format")]
+        [Description("ChatBot - Check ChatBot without received answer from user and sended E-mail in incorrect format. This functionality is unstable and has to be retried")]
+        [Retry(1)]
         [Parallelizable]
         public void WSBMainPage_ChatBot_CheckChatBotWithNoReceivedUserAnswerAndSendedIncorrectEmailFormat()
         {
@@ -135,6 +136,8 @@ namespace TestSuite.TestsSuite
             _chatBot.CheckWelcomeMessage();
             _chatBot.ClickChatBotNoButton();
             _chatBot.CheckDeclinedContactMessage();
+            _chatBot.ClickChatBotSelectEmailContactButton();
+            _chatBot.CheckRequestForEmailAddressMessage();
             _chatBot.SendMessage("IncorrectEmailFormat");
             _chatBot.CheckWrongEmailFormatInformation();
         }

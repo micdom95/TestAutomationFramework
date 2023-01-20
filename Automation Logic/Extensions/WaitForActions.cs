@@ -46,6 +46,20 @@ namespace AutomationLogic.Common.Extensions
             }
         }
 
+        public static bool WaitUntilElementDisapear(this IWebDriver driver, By elementLocator, int timeout = 10)
+        {
+            try
+            {
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeout));
+                return wait.Until(ExpectedConditions.InvisibilityOfElementLocated(elementLocator));
+            }
+            catch
+            {
+
+            }
+            return false;
+        }
+
         public static IWebElement WaitUntilElementClickable(this IWebDriver driver, IWebElement webElement, int timeout = 10)
         {
             try

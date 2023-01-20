@@ -68,6 +68,12 @@ namespace BDDSpecFlowTestSuite.Steps
             _chatBot.ClickChatBotRedirectToVirtualUniversityLink();
         }
 
+        [When(@"I click Email Contact button")]
+        public void WhenIClickEmailContactButton()
+        {
+            _chatBot.ClickChatBotSelectEmailContactButton();
+        }
+
         [Then(@"I can see proper ChatBot Headline")]
         public void AssertProperChatBotHeadline()
         {
@@ -120,6 +126,12 @@ namespace BDDSpecFlowTestSuite.Steps
         public void AssertChatbotSuggestedContactMessage()
         {
             _chatBot.CheckDeclinedContactMessage();
+        }
+
+        [Then(@"I can see Request for Email Address Message")]
+        public void ThenICanSeeRequestForEmailAddressMessage()
+        {
+            _chatBot.CheckRequestForEmailAddressMessage();
         }
 
     }

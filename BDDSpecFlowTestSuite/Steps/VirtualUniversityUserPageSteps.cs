@@ -20,6 +20,12 @@ namespace BDDSpecFlowTestSuite.Steps
             _virtualUniversityUserPageActions = virtualUniversityUserPageActions;
         }
 
+        [When(@"I wait for Page is loaded and accept alert if exist")]
+        public void WaitForPageIsLoadedAndAcceptAlertIfExist()
+        {
+            _virtualUniversityUserPageActions.WaitForUserPageIsLoaded();
+        }
+
         [When(@"I switch language options dropdown to (.*)")]
         public void SwitchLanguageOptionsDropdownToEnglish(string language)
         {
@@ -77,6 +83,5 @@ namespace BDDSpecFlowTestSuite.Steps
             Languages languageEnum = (Languages)Enum.Parse(typeof(Languages), language);
             _virtualUniversityUserPageActions.CheckSelectedAcademicYearOnAnnouncemetsHeader(startAcademicYear, endAcademicYear, languageEnum);
         }
-
     }
 }
