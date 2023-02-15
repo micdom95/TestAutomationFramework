@@ -1,10 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Automation_Logic.Setup.SecretsConfiguration
 {
@@ -118,6 +114,7 @@ namespace Automation_Logic.Setup.SecretsConfiguration
             string connectionStringToDb = this._configuration.GetConnectionString("ConnectionString");
             return connectionStringToDb;
         }
+        
         private void SetupConfiguration()
         {
             string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;

@@ -1,17 +1,8 @@
-﻿using Automation_Logic.Setup.DriverSetup;
-using Automation_Logic.Setup.SecretsConfiguration;
-using AutomationLogic.Common.Extensions;
+﻿using Automation_Logic.Setup.SecretsConfiguration;
 using AutomationLogic.Setup;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TestSuite.Enums;
-using TestSuite.PageObjects.CommonElements;
 using TestSuite.PageObjects.VirtualUniveristy;
 
 namespace TestSuite.TestsSuite
@@ -107,11 +98,11 @@ namespace TestSuite.TestsSuite
         }
 
         [Test]
-        [Category("User Page - Selecting Semester Numer - Semester Numer with correct data")]
-        [Description("This Test will start from Logging Page because we can't do HTTP Request with authorization")]
         [TestCase("1", "2019", "2020")]
         [TestCase("2", "2019", "2020")]
         [TestCase("7", "2022", "2023")]
+        [Category("User Page - Selecting Semester Numer - Semester Numer with correct data")]
+        [Description("This Test will start from Logging Page because we can't do HTTP Request with authorization")]
         [Parallelizable]
         public void VirtualUniversityUserPage_SelectedSemesterNumerAndAcademicYearWithPolishLanguage_CorrectDataIsDisplayed(string semesterNumer, string startAcademicYear, string endAcademicYear)
         {

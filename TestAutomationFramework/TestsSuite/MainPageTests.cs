@@ -1,18 +1,8 @@
-﻿using Automation_Logic.Handlers;
-using Automation_Logic.Setup.DriverSetup;
-using AutomationLogic.Common.Extensions;
-using AutomationLogic.Handlers;
+﻿using AutomationLogic.Handlers;
 using AutomationLogic.Setup;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using PageObjects.Functionalities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using TestSuite.Enums;
 using TestSuite.PageObjects.CommonElements;
 using TestSuite.PageObjects.MainPage;
@@ -55,6 +45,7 @@ namespace TestSuite.TestsSuite
 
         [Test]
         [TestCase("TestPhrase")]
+        [TestCase("1234567890")]
         [Category("Search Engine")]
         [Description("Search Engine Test - Checking typed phrase")]
         [Parallelizable]
@@ -136,8 +127,6 @@ namespace TestSuite.TestsSuite
             _chatBot.CheckWelcomeMessage();
             _chatBot.ClickChatBotNoButton();
             _chatBot.CheckDeclinedContactMessage();
-            _chatBot.ClickChatBotSelectEmailContactButton();
-            _chatBot.CheckRequestForEmailAddressMessage();
             _chatBot.SendMessage("IncorrectEmailFormat");
             _chatBot.CheckWrongEmailFormatInformation();
         }

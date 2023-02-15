@@ -4,16 +4,8 @@ using AutomationLogic.Handlers;
 using FluentAssertions;
 using OpenQA.Selenium;
 using PageObjects.Extensions;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using TestSuite.Enums;
-using TestSuite.Model;
 using TestSuite.Translations;
 using TestSuite.Translations.Assertions;
 
@@ -36,8 +28,6 @@ namespace TestSuite.PageObjects.VirtualUniveristy
             javaScriptExecutor.ExecuteScript("arguments[0].click();", FilterButton);
             CustomVirtualUniversityWaiter.WaitUntilElementVisible(_driver, By.XPath("//div[@id='ctl00_ctl00_ContentPlaceHolder_RightContentPlaceHolder_appLoadingPanelctl00_ctl00_ContentPlaceHolder_RightContentPlaceHolder_ctl00']"));
             CustomVirtualUniversityWaiter.WaitElementDisspear(_driver, By.XPath("//div[@id='ctl00_ctl00_ContentPlaceHolder_RightContentPlaceHolder_appLoadingPanelctl00_ctl00_ContentPlaceHolder_RightContentPlaceHolder_ctl00']"));
-            //WaitForActions.WaitUntilElementVisible(_driver, By.XPath("//div[@id='ctl00_ctl00_ContentPlaceHolder_RightContentPlaceHolder_appLoadingPanelctl00_ctl00_ContentPlaceHolder_RightContentPlaceHolder_ctl00']"));
-            //WaitForActions.WaitUntilElementDisapear(_driver, By.XPath("//div[@id='ctl00_ctl00_ContentPlaceHolder_RightContentPlaceHolder_appLoadingPanelctl00_ctl00_ContentPlaceHolder_RightContentPlaceHolder_ctl00']"));
         }
 
         public void CheckDisplayingAlertAndAcceptIfExist()

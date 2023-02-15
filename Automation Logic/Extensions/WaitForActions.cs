@@ -2,9 +2,6 @@
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace AutomationLogic.Common.Extensions
 {
     public static class WaitForActions

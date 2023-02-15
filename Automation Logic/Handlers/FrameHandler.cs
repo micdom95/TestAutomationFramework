@@ -1,9 +1,5 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Automation_Logic.Handlers
 {
@@ -44,7 +40,7 @@ namespace Automation_Logic.Handlers
 
         public void FindFrameForWebElement(By webElementLocation)
         {
-            int framesCount = driver.FindElements(By.TagName("iframe")).Count();
+            int framesCount = GetFramesCount();
 
             for (int i = 0; i < framesCount; i++)
             {

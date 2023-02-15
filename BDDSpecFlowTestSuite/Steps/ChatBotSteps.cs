@@ -1,9 +1,4 @@
 ﻿using PageObjects.Functionalities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace BDDSpecFlowTestSuite.Steps
@@ -69,7 +64,7 @@ namespace BDDSpecFlowTestSuite.Steps
         }
 
         [When(@"I click Email Contact button")]
-        public void WhenIClickEmailContactButton()
+        public void ClickEmailContactButton()
         {
             _chatBot.ClickChatBotSelectEmailContactButton();
         }
@@ -129,7 +124,7 @@ namespace BDDSpecFlowTestSuite.Steps
         }
 
         [Then(@"I can see Request for Email Address Message")]
-        public void ThenICanSeeRequestForEmailAddressMessage()
+        public void AssertRequestForEmailAddressMessage()
         {
             _chatBot.CheckRequestForEmailAddressMessage();
         }

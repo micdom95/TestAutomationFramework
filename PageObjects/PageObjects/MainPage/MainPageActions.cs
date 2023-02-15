@@ -2,12 +2,7 @@
 using AutomationLogic.Handlers;
 using FluentAssertions;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TestSuite.Enums;
 using TestSuite.Translations;
 using TestSuite.Translations.Assertions;

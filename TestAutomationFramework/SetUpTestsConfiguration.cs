@@ -1,12 +1,5 @@
 ﻿using Automation_Logic.Setup.DriverSetup;
-using AutomationLogic.Setup;
 using NUnit.Framework;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TestSuite
 {

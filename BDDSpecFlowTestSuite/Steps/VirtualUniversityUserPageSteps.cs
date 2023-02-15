@@ -1,9 +1,5 @@
 ﻿using Automation_Logic.Setup.SecretsConfiguration;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using TestSuite.Enums;
 using TestSuite.PageObjects.VirtualUniveristy;

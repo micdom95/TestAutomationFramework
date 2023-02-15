@@ -49,7 +49,6 @@ Examples:
 | 2             | 2019              | 2020            | Polish   |
 | 7             | 2022              | 2023            | Polish   |
 
-
 Scenario: Virtual University User Page has correct Polish translation on Announcements
 When I enter correct Username to Username field
 And I enter correct Password to Password field
@@ -70,4 +69,3 @@ And I can see correct User Info
 And I can see correct User Album Number
 When I switch language options dropdown to English
 Then I can see correct English translation on Announcements Page
-

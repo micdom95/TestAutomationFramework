@@ -1,10 +1,6 @@
 ﻿using OpenQA.Selenium;
 using PageObjects.Functionalities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using TestSuite.Enums;
 using TestSuite.PageObjects.MainPage;
@@ -27,7 +23,7 @@ namespace BDDSpecFlowTestSuite.Steps
 
         [Given(@"Opened WSB Academy Main Page")]
         [When(@"I navigate to WSB Academy Main Page")]
-        public void GivenOpenedWSBAcademyMainPage()
+        public void OpenWSBAcademyMainPage()
         {
             _mainPageActions.NavigateToWSBMainPage();
         }
@@ -47,7 +43,7 @@ namespace BDDSpecFlowTestSuite.Steps
         }
 
         [Then(@"I can see label with searched phrase (.*)")]
-        public void ThenICanSeeLabelWithSearchedPhrase(string expectedSearchResult)
+        public void AssertLabelWithSearchedPhrase(string expectedSearchResult)
         {
             _mainPageActions.CheckSearchResultLabel(expectedSearchResult);
         }

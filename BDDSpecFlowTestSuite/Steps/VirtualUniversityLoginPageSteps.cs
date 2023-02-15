@@ -1,9 +1,4 @@
 ﻿using Automation_Logic.Setup.SecretsConfiguration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using TestSuite.PageObjects.VirtualUniveristy;
 
@@ -33,7 +28,7 @@ namespace BDDSpecFlowTestSuite.Steps
         }
 
         [When(@"I enter correct Username to Username field")]
-        public void WhenIEnterCorrectUserNameToUserNameField()
+        public void EnterCorrectUserNameToUserNameField()
         {
             _virtualUniversityLoginPageActions.EnterTextToUsernameTextbox(SecretsConfiguration.Instance.UserNameLoginEmail);
         }
@@ -45,7 +40,7 @@ namespace BDDSpecFlowTestSuite.Steps
         }
 
         [When(@"I enter correct Password to Password field")]
-        public void WhenIEnterCorrectPasswordToPasswordField()
+        public void EnterCorrectPasswordToPasswordField()
         {
             _virtualUniversityLoginPageActions.EnterTextToPasswordTextbox(SecretsConfiguration.Instance.UserLoginPassword);
         }
